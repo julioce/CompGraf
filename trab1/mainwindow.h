@@ -12,7 +12,6 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void simpleResize(int w2, int h2);
 
 protected:
     void changeEvent(QEvent *e);
@@ -23,7 +22,10 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
-    QImage *selectedQImage;
+    QImage *selectedImage;
+    void simpleResize(int w2, int h2);
+    void crop(int x1, int y1, int x2, int y2);
+
 
 };
 
