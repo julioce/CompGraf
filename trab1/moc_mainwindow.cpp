@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Fri Aug 26 17:37:42 2011
+** Created: Fri Aug 26 18:12:35 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        4,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -33,12 +33,16 @@ static const uint qt_meta_data_MainWindow[] = {
  // slots: signature, parameters, type, tag, flags
       12,   11,   11,   11, 0x0a,
       23,   11,   11,   11, 0x0a,
+      34,   11,   11,   11, 0x0a,
+      43,   11,   11,   11, 0x0a,
+      57,   11,   11,   11, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_MainWindow[] = {
-    "MainWindow\0\0openFile()\0resize()\0"
+    "MainWindow\0\0openFile()\0saveFile()\0"
+    "resize()\0rotateRight()\0rotateLeft()\0"
 };
 
 const QMetaObject MainWindow::staticMetaObject = {
@@ -71,10 +75,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: openFile(); break;
-        case 1: resize(); break;
+        case 1: saveFile(); break;
+        case 2: resize(); break;
+        case 3: rotateRight(); break;
+        case 4: rotateLeft(); break;
         default: ;
         }
-        _id -= 2;
+        _id -= 5;
     }
     return _id;
 }

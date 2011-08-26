@@ -35,6 +35,24 @@
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="cursor">
+     <cursorShape>CrossCursor</cursorShape>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="lineWidth">
+     <number>0</number>
+    </property>
+    <property name="midLineWidth">
+     <number>1</number>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -48,7 +66,7 @@
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>205</x>
       <y>10</y>
       <width>16</width>
       <height>358</height>
@@ -67,7 +85,7 @@
    <widget class="QPushButton" name="resizeButton">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>130</x>
       <y>330</y>
       <width>71</width>
       <height>27</height>
@@ -76,17 +94,14 @@
     <property name="text">
      <string>Resize</string>
     </property>
-    <property name="flat">
-     <bool>false</bool>
-    </property>
    </widget>
    <widget class="QLabel" name="imgResult">
     <property name="geometry">
      <rect>
       <x>230</x>
       <y>10</y>
-      <width>361</width>
-      <height>351</height>
+      <width>351</width>
+      <height>311</height>
      </rect>
     </property>
     <property name="text">
@@ -94,6 +109,71 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rightButton">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>330</y>
+      <width>41</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Right</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="leftButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>330</y>
+      <width>41</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Left</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>305</y>
+      <width>59</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Rotate</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>316</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="saveButton">
+    <property name="geometry">
+     <rect>
+      <x>531</x>
+      <y>330</y>
+      <width>51</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Save</string>
     </property>
    </widget>
   </widget>

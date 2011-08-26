@@ -11,7 +11,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     selectedImage = new QImage();
     connect(ui->actionOpenFile, SIGNAL(triggered()), this, SLOT(openFile()));
+    connect(ui->saveButton, SIGNAL(triggered()), this, SLOT(saveFile()));
+
     connect(ui->resizeButton, SIGNAL(clicked()), this, SLOT(resize()));
+    connect(ui->rightButton, SIGNAL(clicked()), this, SLOT(rotateRight()));
+    connect(ui->leftButton, SIGNAL(clicked()), this, SLOT(rotateLeft()));
 }
 
 MainWindow::~MainWindow()
@@ -42,6 +46,11 @@ void MainWindow::openFile(void)
     ui->imgResult->setPixmap(QPixmap::fromImage(*selectedImage));
 }
 
+void MainWindow::saveFile(void)
+{
+    targetImg->save("./edited.png");
+}
+
 void MainWindow::resize(void)
 {
     simpleResize(180, 200);
@@ -50,7 +59,7 @@ void MainWindow::resize(void)
 /* Nearest Neighbor Image Scaling */
 void MainWindow::simpleResize(int target_width, int target_height)
 {
-    QImage *targetImg = new QImage(target_width, target_height, selectedImage->format());
+    targetImg = new QImage(target_width, target_height, selectedImage->format());
 
     double x_ratio = selectedImage->width() / (double)target_width;
     double y_ratio = selectedImage->height() / (double)target_height;
@@ -68,7 +77,6 @@ void MainWindow::simpleResize(int target_width, int target_height)
     }
 
     ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
-    //targetImg->save("/home/raphaeloliveira/saved.png");
 }
 
 void MainWindow::crop(int x1, int y1, int x2, int y2) {
@@ -76,9 +84,9 @@ void MainWindow::crop(int x1, int y1, int x2, int y2) {
     int target_width = x2 - x1;
     int target_height = y2 - y1;
 
-    qDebug() << "x1" << x1 << "y1" << y1 << "target_width" << target_width;
+    qDebug() << "x1 " << x1 << "y1 " << y1 << "target_width " << target_width;
 
-    QImage *targetImg = new QImage(target_width, target_height, selectedImage->format());
+    targetImg = new QImage(target_width, target_height, selectedImage->format());
 
     for (int i = 0; i < target_width; i++) {
         for (int j = 0; j < target_height; j++) {
@@ -89,6 +97,44 @@ void MainWindow::crop(int x1, int y1, int x2, int y2) {
     }
 
     ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
+}
+
+void MainWindow::rotateRight() {
+
+    int target_width = selectedImage->width();
+    int target_height = selectedImage->height();
+    targetImg = new QImage(target_width, target_height, selectedImage->format());
+
+
+    for (int i = 0; i < target_width; i++) {
+        for (int j = 0; j < target_height; j++) {
+
+            QRgb qrgb = selectedImage->pixel(target_height - j, target_width - i);
+            targetImg->setPixel(i, j, qrgb);
+        }
+    }
+
+    ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
+
+}
+
+void MainWindow::rotateLeft() {
+
+    int target_width = selectedImage->width();
+    int target_height = selectedImage->height();
+    targetImg = new QImage(target_width, target_height, selectedImage->format());
+
+
+    for (int i = 0; i < target_width; i++) {
+        for (int j = 0; j < target_height; j++) {
+
+            QRgb qrgb = selectedImage->pixel(i, j);
+            targetImg->setPixel(j, i, qrgb);
+        }
+    }
+
+    ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
+
 }
 
 
