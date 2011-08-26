@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     selectedQImage = new QImage();
     connect(ui->actionOpenFile, SIGNAL(triggered()), this, SLOT(openFile()));
-    connect(ui->actionResize, SIGNAL(triggered()), this, SLOT(resize()));
+    connect(ui->resizeButton, SIGNAL(clicked()), this, SLOT(resize()));
 }
 
 MainWindow::~MainWindow()
@@ -40,6 +40,7 @@ void MainWindow::openFile(void)
     selectedQImage->load(path);
 
     ui->imgSelected->setPixmap(QPixmap::fromImage(*selectedQImage));
+    ui->imgResult->setPixmap(QPixmap::fromImage(*selectedQImage));
 }
 
 void MainWindow::resize(void)
@@ -66,5 +67,5 @@ void MainWindow::simpleResize(int w2, int h2)
         }
     }
 
-    ui->imgSelected->setPixmap(QPixmap::fromImage(*targetImg));
+    ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
 }

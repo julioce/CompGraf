@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Fri Aug 26 16:40:03 2011
+** Created: Fri Aug 26 17:14:42 2011
 **      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -20,6 +20,7 @@
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
+#include <QtGui/QPushButton>
 #include <QtGui/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -29,13 +30,13 @@ class Ui_MainWindow
 public:
     QAction *actionOpenFile;
     QAction *actionExit;
-    QAction *actionResize;
     QWidget *centralWidget;
     QLabel *imgSelected;
     QFrame *line;
+    QPushButton *resizeButton;
+    QLabel *imgResult;
     QMenuBar *menuBar;
     QMenu *menuFile;
-    QMenu *menuEdit;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -51,8 +52,6 @@ public:
         actionOpenFile->setObjectName(QString::fromUtf8("actionOpenFile"));
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
-        actionResize = new QAction(MainWindow);
-        actionResize->setObjectName(QString::fromUtf8("actionResize"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         imgSelected = new QLabel(centralWidget);
@@ -67,25 +66,34 @@ public:
         imgSelected->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         line = new QFrame(centralWidget);
         line->setObjectName(QString::fromUtf8("line"));
-        line->setGeometry(QRect(210, 10, 16, 321));
+        line->setGeometry(QRect(210, 10, 16, 358));
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Maximum);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(255);
+        sizePolicy2.setHeightForWidth(line->sizePolicy().hasHeightForWidth());
+        line->setSizePolicy(sizePolicy2);
         line->setFrameShape(QFrame::VLine);
         line->setFrameShadow(QFrame::Sunken);
+        resizeButton = new QPushButton(centralWidget);
+        resizeButton->setObjectName(QString::fromUtf8("resizeButton"));
+        resizeButton->setGeometry(QRect(70, 330, 71, 27));
+        resizeButton->setFlat(false);
+        imgResult = new QLabel(centralWidget);
+        imgResult->setObjectName(QString::fromUtf8("imgResult"));
+        imgResult->setGeometry(QRect(230, 10, 361, 351));
+        imgResult->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 600, 25));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
-        menuEdit = new QMenu(menuBar);
-        menuEdit->setObjectName(QString::fromUtf8("menuEdit"));
         MainWindow->setMenuBar(menuBar);
 
         menuBar->addAction(menuFile->menuAction());
-        menuBar->addAction(menuEdit->menuAction());
         menuFile->addAction(actionOpenFile);
         menuFile->addAction(actionExit);
         menuFile->addSeparator();
-        menuEdit->addAction(actionResize);
 
         retranslateUi(MainWindow);
 
@@ -97,10 +105,10 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Image Factory", 0, QApplication::UnicodeUTF8));
         actionOpenFile->setText(QApplication::translate("MainWindow", "Open", 0, QApplication::UnicodeUTF8));
         actionExit->setText(QApplication::translate("MainWindow", "Exit", 0, QApplication::UnicodeUTF8));
-        actionResize->setText(QApplication::translate("MainWindow", "Resize", 0, QApplication::UnicodeUTF8));
         imgSelected->setText(QString());
+        resizeButton->setText(QApplication::translate("MainWindow", "Resize", 0, QApplication::UnicodeUTF8));
+        imgResult->setText(QString());
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
-        menuEdit->setTitle(QApplication::translate("MainWindow", "Edit", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };
