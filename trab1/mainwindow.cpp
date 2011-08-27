@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->saveButton, SIGNAL(clicked()), this, SLOT(saveFile()));
 
     connect(ui->resizeButton, SIGNAL(clicked()), this, SLOT(resize()));
+    connect(ui->resizeSlider, SIGNAL(sliderReleased()), this, SLOT(magnify()));
     connect(ui->rightButton, SIGNAL(clicked()), this, SLOT(rotateRight()));
     connect(ui->leftButton, SIGNAL(clicked()), this, SLOT(rotateLeft()));
 }
@@ -47,9 +48,9 @@ void MainWindow::openFile(void)
     ui->imgResult->setPixmap(QPixmap::fromImage(*selectedImage));
 }
 
-
 void MainWindow::saveChanges(void)
 {
+    qDebug() << "Salvou a alteracao feita";
     ui->imgSelected->setPixmap(QPixmap::fromImage(*targetImg));
     selectedImage = targetImg;
 }
@@ -57,13 +58,24 @@ void MainWindow::saveChanges(void)
 void MainWindow::saveFile(void)
 {
     qDebug() << "Clicou em save";
-    QString path = QFileDialog::getSaveFileName(this, tr("Open image - Image Factory")," ",tr("Image Files (*.png *.jpg *.bmp)"));
+    QString path = QFileDialog::getSaveFileName(this, tr("Image Factory - Open image")," ",tr("Image Files (*.png *.jpg *.bmp)"));
     qDebug() << path;
     targetImg->save(path);
 }
 
+void MainWindow::magnify(void)
+{
+   qDebug() << "Foi chamado o magnify";
+
+   int newWidth = selectedImage->width() * ui->resizeSlider->value();
+   int newHeight = selectedImage->height() * ui->resizeSlider->value();
+
+   simpleResize(newWidth, newHeight);
+}
+
 void MainWindow::resize(void)
 {
+    qDebug() << "Foi chamado o resize";
     double aspectRatio;
     int newWidth = ui->inputWidth->text().toInt(0);
     int newHeight = ui->inputHeight->text().toInt(0);
@@ -129,7 +141,7 @@ void MainWindow::crop(int x1, int y1, int x2, int y2) {
 }
 
 void MainWindow::rotateRight() {
-
+    qDebug() << "Foi chamada a rotacao a Direta";
     int target_width = selectedImage->width();
     int target_height = selectedImage->height();
     targetImg = new QImage(target_height, target_width, selectedImage->format());
@@ -148,7 +160,7 @@ void MainWindow::rotateRight() {
 }
 
 void MainWindow::rotateLeft() {
-
+    qDebug() << "Foi chamada a rotacao a Esquerda";
     int target_width = selectedImage->width();
     int target_height = selectedImage->height();
     targetImg = new QImage(target_height, target_width, selectedImage->format());
