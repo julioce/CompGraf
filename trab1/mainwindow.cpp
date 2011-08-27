@@ -103,14 +103,14 @@ void MainWindow::rotateRight() {
 
     int target_width = selectedImage->width();
     int target_height = selectedImage->height();
-    targetImg = new QImage(target_width, target_height, selectedImage->format());
+    targetImg = new QImage(target_height, target_width, selectedImage->format());
 
 
     for (int i = 0; i < target_width; i++) {
         for (int j = 0; j < target_height; j++) {
 
-            QRgb qrgb = selectedImage->pixel(target_height - j, target_width - i);
-            targetImg->setPixel(i, j, qrgb);
+            QRgb qrgb = selectedImage->pixel(i, j);
+            targetImg->setPixel(target_height-j, i, qrgb);
         }
     }
 
@@ -122,14 +122,14 @@ void MainWindow::rotateLeft() {
 
     int target_width = selectedImage->width();
     int target_height = selectedImage->height();
-    targetImg = new QImage(target_width, target_height, selectedImage->format());
+    targetImg = new QImage(target_height, target_width, selectedImage->format());
 
 
     for (int i = 0; i < target_width; i++) {
         for (int j = 0; j < target_height; j++) {
 
             QRgb qrgb = selectedImage->pixel(i, j);
-            targetImg->setPixel(j, i, qrgb);
+            targetImg->setPixel(j, target_width-i, qrgb);
         }
     }
 
