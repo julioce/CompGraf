@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sat Aug 27 15:46:16 2011
+** Created: Sat Aug 27 19:05:37 2011
 **      by: Qt User Interface Compiler version 4.7.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -44,7 +44,7 @@ public:
     QFrame *line_2;
     QPushButton *saveButton;
     QLabel *labelSample;
-    QLabel *labelResize;
+    QLabel *labelMagnify;
     QFrame *line_3;
     QLineEdit *inputWidth;
     QLineEdit *inputHeight;
@@ -56,6 +56,8 @@ public:
     QLabel *label;
     QLabel *labelCrop;
     QFrame *line_4;
+    QLabel *labelResize;
+    QFrame *line_5;
     QMenuBar *menuBar;
     QMenu *menuFile;
 
@@ -93,7 +95,7 @@ public:
         imgSelected->setAlignment(Qt::AlignCenter);
         line = new QFrame(centralWidget);
         line->setObjectName(QString::fromUtf8("line"));
-        line->setGeometry(QRect(220, 0, 20, 580));
+        line->setGeometry(QRect(222, 0, 20, 580));
         QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Maximum);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(255);
@@ -106,11 +108,17 @@ public:
         resizeButton->setGeometry(QRect(145, 320, 71, 27));
         imgResult = new QLabel(centralWidget);
         imgResult->setObjectName(QString::fromUtf8("imgResult"));
-        imgResult->setGeometry(QRect(249, 30, 530, 490));
+        imgResult->setGeometry(QRect(249, 30, 530, 531));
+        sizePolicy.setHeightForWidth(imgResult->sizePolicy().hasHeightForWidth());
+        imgResult->setSizePolicy(sizePolicy);
+        imgResult->setSizeIncrement(QSize(0, 0));
+        imgResult->setAutoFillBackground(false);
+        imgResult->setTextFormat(Qt::AutoText);
+        imgResult->setScaledContents(false);
         imgResult->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         rightButton = new QPushButton(centralWidget);
         rightButton->setObjectName(QString::fromUtf8("rightButton"));
-        rightButton->setGeometry(QRect(70, 520, 50, 50));
+        rightButton->setGeometry(QRect(70, 473, 50, 50));
         rightButton->setAutoFillBackground(false);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Images/Redo.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -118,54 +126,54 @@ public:
         rightButton->setIconSize(QSize(32, 32));
         leftButton = new QPushButton(centralWidget);
         leftButton->setObjectName(QString::fromUtf8("leftButton"));
-        leftButton->setGeometry(QRect(15, 520, 50, 50));
+        leftButton->setGeometry(QRect(15, 473, 50, 50));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/Images/Undo.png"), QSize(), QIcon::Normal, QIcon::Off);
         leftButton->setIcon(icon1);
         leftButton->setIconSize(QSize(32, 32));
         labelRotate = new QLabel(centralWidget);
         labelRotate->setObjectName(QString::fromUtf8("labelRotate"));
-        labelRotate->setGeometry(QRect(20, 495, 60, 17));
+        labelRotate->setGeometry(QRect(20, 450, 60, 17));
         line_2 = new QFrame(centralWidget);
         line_2->setObjectName(QString::fromUtf8("line_2"));
-        line_2->setGeometry(QRect(20, 505, 190, 20));
+        line_2->setGeometry(QRect(20, 458, 190, 20));
         line_2->setFrameShape(QFrame::HLine);
         line_2->setFrameShadow(QFrame::Sunken);
         saveButton = new QPushButton(centralWidget);
         saveButton->setObjectName(QString::fromUtf8("saveButton"));
-        saveButton->setGeometry(QRect(720, 535, 61, 27));
+        saveButton->setGeometry(QRect(155, 538, 61, 27));
         labelSample = new QLabel(centralWidget);
         labelSample->setObjectName(QString::fromUtf8("labelSample"));
         labelSample->setGeometry(QRect(20, 10, 62, 16));
-        labelResize = new QLabel(centralWidget);
-        labelResize->setObjectName(QString::fromUtf8("labelResize"));
-        labelResize->setGeometry(QRect(20, 200, 60, 16));
+        labelMagnify = new QLabel(centralWidget);
+        labelMagnify->setObjectName(QString::fromUtf8("labelMagnify"));
+        labelMagnify->setGeometry(QRect(20, 200, 60, 16));
         line_3 = new QFrame(centralWidget);
         line_3->setObjectName(QString::fromUtf8("line_3"));
-        line_3->setGeometry(QRect(20, 210, 190, 20));
+        line_3->setGeometry(QRect(20, 208, 190, 20));
         line_3->setFrameShape(QFrame::HLine);
         line_3->setFrameShadow(QFrame::Sunken);
         inputWidth = new QLineEdit(centralWidget);
         inputWidth->setObjectName(QString::fromUtf8("inputWidth"));
-        inputWidth->setGeometry(QRect(20, 270, 44, 22));
+        inputWidth->setGeometry(QRect(20, 294, 44, 22));
         inputHeight = new QLineEdit(centralWidget);
         inputHeight->setObjectName(QString::fromUtf8("inputHeight"));
-        inputHeight->setGeometry(QRect(120, 270, 44, 22));
+        inputHeight->setGeometry(QRect(120, 294, 44, 22));
         labelWidth = new QLabel(centralWidget);
         labelWidth->setObjectName(QString::fromUtf8("labelWidth"));
-        labelWidth->setGeometry(QRect(70, 278, 41, 16));
+        labelWidth->setGeometry(QRect(70, 302, 41, 16));
         labelHeight = new QLabel(centralWidget);
         labelHeight->setObjectName(QString::fromUtf8("labelHeight"));
-        labelHeight->setGeometry(QRect(170, 278, 41, 16));
+        labelHeight->setGeometry(QRect(170, 302, 41, 16));
         applyButton = new QPushButton(centralWidget);
         applyButton->setObjectName(QString::fromUtf8("applyButton"));
-        applyButton->setGeometry(QRect(260, 535, 61, 27));
+        applyButton->setGeometry(QRect(17, 538, 121, 27));
         boxAspectRatio = new QCheckBox(centralWidget);
         boxAspectRatio->setObjectName(QString::fromUtf8("boxAspectRatio"));
-        boxAspectRatio->setGeometry(QRect(20, 300, 190, 20));
+        boxAspectRatio->setGeometry(QRect(19, 324, 111, 20));
         resizeSlider = new QSlider(centralWidget);
         resizeSlider->setObjectName(QString::fromUtf8("resizeSlider"));
-        resizeSlider->setGeometry(QRect(20, 240, 190, 22));
+        resizeSlider->setGeometry(QRect(20, 237, 190, 22));
         resizeSlider->setMinimum(1);
         resizeSlider->setMaximum(5);
         resizeSlider->setPageStep(1);
@@ -173,7 +181,7 @@ public:
         resizeSlider->setOrientation(Qt::Horizontal);
         label = new QLabel(centralWidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(23, 228, 190, 16));
+        label->setGeometry(QRect(23, 225, 190, 16));
         labelCrop = new QLabel(centralWidget);
         labelCrop->setObjectName(QString::fromUtf8("labelCrop"));
         labelCrop->setGeometry(QRect(20, 360, 60, 16));
@@ -182,6 +190,14 @@ public:
         line_4->setGeometry(QRect(20, 370, 190, 20));
         line_4->setFrameShape(QFrame::HLine);
         line_4->setFrameShadow(QFrame::Sunken);
+        labelResize = new QLabel(centralWidget);
+        labelResize->setObjectName(QString::fromUtf8("labelResize"));
+        labelResize->setGeometry(QRect(20, 270, 60, 16));
+        line_5 = new QFrame(centralWidget);
+        line_5->setObjectName(QString::fromUtf8("line_5"));
+        line_5->setGeometry(QRect(20, 278, 190, 20));
+        line_5->setFrameShape(QFrame::HLine);
+        line_5->setFrameShadow(QFrame::Sunken);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
@@ -193,7 +209,6 @@ public:
         menuBar->addAction(menuFile->menuAction());
         menuFile->addAction(actionOpenFile);
         menuFile->addAction(actionExit);
-        menuFile->addSeparator();
 
         retranslateUi(MainWindow);
 
@@ -213,13 +228,14 @@ public:
         labelRotate->setText(QApplication::translate("MainWindow", "Rotate", 0, QApplication::UnicodeUTF8));
         saveButton->setText(QApplication::translate("MainWindow", "Save", 0, QApplication::UnicodeUTF8));
         labelSample->setText(QApplication::translate("MainWindow", "Sample", 0, QApplication::UnicodeUTF8));
-        labelResize->setText(QApplication::translate("MainWindow", "Resize", 0, QApplication::UnicodeUTF8));
+        labelMagnify->setText(QApplication::translate("MainWindow", "Magnify", 0, QApplication::UnicodeUTF8));
         labelWidth->setText(QApplication::translate("MainWindow", "width", 0, QApplication::UnicodeUTF8));
         labelHeight->setText(QApplication::translate("MainWindow", "height", 0, QApplication::UnicodeUTF8));
-        applyButton->setText(QApplication::translate("MainWindow", "Apply", 0, QApplication::UnicodeUTF8));
-        boxAspectRatio->setText(QApplication::translate("MainWindow", "Keep Aspect Ratio", 0, QApplication::UnicodeUTF8));
+        applyButton->setText(QApplication::translate("MainWindow", "Apply Changes", 0, QApplication::UnicodeUTF8));
+        boxAspectRatio->setText(QApplication::translate("MainWindow", "Aspect Ratio", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("MainWindow", "1x      2x       3x      4x      5x", 0, QApplication::UnicodeUTF8));
         labelCrop->setText(QApplication::translate("MainWindow", "Crop", 0, QApplication::UnicodeUTF8));
+        labelResize->setText(QApplication::translate("MainWindow", "Resize", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

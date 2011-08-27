@@ -20,6 +20,8 @@ public slots:
    void openFile(void);
    void saveChanges(void);
    void saveFile(void);
+   void exit(void);
+
    void magnify(void);
    void resize(void);
    void rotateRight(void);

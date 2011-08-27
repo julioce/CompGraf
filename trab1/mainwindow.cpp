@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionOpenFile, SIGNAL(triggered()), this, SLOT(openFile()));
     connect(ui->applyButton, SIGNAL(clicked()), this, SLOT(saveChanges()));
     connect(ui->saveButton, SIGNAL(clicked()), this, SLOT(saveFile()));
+    connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(exit()));
 
     connect(ui->resizeButton, SIGNAL(clicked()), this, SLOT(resize()));
     connect(ui->resizeSlider, SIGNAL(sliderReleased()), this, SLOT(magnify()));
@@ -46,6 +47,13 @@ void MainWindow::openFile(void)
 
     ui->imgSelected->setPixmap(QPixmap::fromImage(*selectedImage));
     ui->imgResult->setPixmap(QPixmap::fromImage(*selectedImage));
+
+    ui->imgResult->setGeometry(ui->imgResult->x(), ui->imgResult->y(), selectedImage->width(), selectedImage->height());
+}
+
+void MainWindow::exit(void)
+{
+    qApp->exit(0);
 }
 
 void MainWindow::saveChanges(void)
@@ -117,6 +125,7 @@ void MainWindow::simpleResize(int target_width, int target_height)
         }
     }
 
+    ui->imgResult->setGeometry(ui->imgResult->x(), ui->imgResult->y(), targetImg->width(), targetImg->height());
     ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
 }
 
@@ -137,6 +146,7 @@ void MainWindow::crop(int x1, int y1, int x2, int y2) {
         }
     }
 
+    ui->imgResult->setGeometry(ui->imgResult->x(), ui->imgResult->y(), targetImg->width(), targetImg->height());
     ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
 }
 
@@ -155,6 +165,7 @@ void MainWindow::rotateRight() {
         }
     }
 
+    ui->imgResult->setGeometry(ui->imgResult->x(), ui->imgResult->y(), targetImg->width(), targetImg->height());
     ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
 
 }
@@ -174,6 +185,7 @@ void MainWindow::rotateLeft() {
         }
     }
 
+    ui->imgResult->setGeometry(ui->imgResult->x(), ui->imgResult->y(), targetImg->width(), targetImg->height());
     ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
 
 }
