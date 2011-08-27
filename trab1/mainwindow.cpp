@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     selectedImage = new QImage();
     connect(ui->actionOpenFile, SIGNAL(triggered()), this, SLOT(openFile()));
+    connect(ui->applyButton, SIGNAL(clicked()), this, SLOT(saveChanges()));
     connect(ui->saveButton, SIGNAL(clicked()), this, SLOT(saveFile()));
 
     connect(ui->resizeButton, SIGNAL(clicked()), this, SLOT(resize()));
@@ -46,16 +47,41 @@ void MainWindow::openFile(void)
     ui->imgResult->setPixmap(QPixmap::fromImage(*selectedImage));
 }
 
+
+void MainWindow::saveChanges(void)
+{
+    ui->imgSelected->setPixmap(QPixmap::fromImage(*targetImg));
+    selectedImage = targetImg;
+}
+
 void MainWindow::saveFile(void)
 {
-    targetImg->save("./edited.png");
+    qDebug() << "Clicou em save";
+    QString path = QFileDialog::getSaveFileName(this, tr("Open image - Image Factory")," ",tr("Image Files (*.png *.jpg *.bmp)"));
+    qDebug() << path;
+    targetImg->save(path);
 }
 
 void MainWindow::resize(void)
 {
-    if(ui->inputWidth->text().toInt(0) > 0 && ui->inputHeight->text().toInt(0) > 0)
-    {
-        simpleResize(ui->inputWidth->text().toInt(0), ui->inputHeight->text().toInt(0));
+    double aspectRatio;
+    int newWidth = ui->inputWidth->text().toInt(0);
+    int newHeight = ui->inputHeight->text().toInt(0);
+
+    if(newWidth > 0 && newHeight > 0){
+        if(ui->boxAspectRatio->isChecked()){
+
+            aspectRatio = selectedImage->width() / (double)selectedImage->height();
+            qDebug() << aspectRatio;
+
+            if(newWidth > newHeight){
+                simpleResize(newHeight*aspectRatio, newHeight);
+            }else{
+                simpleResize(newWidth*aspectRatio, newWidth);
+            }
+        }else{
+            simpleResize(newWidth, newHeight);
+        }
     }
 }
 
