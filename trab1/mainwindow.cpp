@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     selectedImage = new QImage();
     connect(ui->actionOpenFile, SIGNAL(triggered()), this, SLOT(openFile()));
-    connect(ui->saveButton, SIGNAL(triggered()), this, SLOT(saveFile()));
+    connect(ui->saveButton, SIGNAL(clicked()), this, SLOT(saveFile()));
 
     connect(ui->resizeButton, SIGNAL(clicked()), this, SLOT(resize()));
     connect(ui->rightButton, SIGNAL(clicked()), this, SLOT(rotateRight()));
@@ -53,7 +53,10 @@ void MainWindow::saveFile(void)
 
 void MainWindow::resize(void)
 {
-    simpleResize(180, 200);
+    if(ui->inputWidth->text().toInt(0) > 0 && ui->inputHeight->text().toInt(0) > 0)
+    {
+        simpleResize(ui->inputWidth->text().toInt(0), ui->inputHeight->text().toInt(0));
+    }
 }
 
 /* Nearest Neighbor Image Scaling */
@@ -110,7 +113,7 @@ void MainWindow::rotateRight() {
         for (int j = 0; j < target_height; j++) {
 
             QRgb qrgb = selectedImage->pixel(i, j);
-            targetImg->setPixel(target_height-j, i, qrgb);
+            targetImg->setPixel(target_height-j-1, i, qrgb);
         }
     }
 
