@@ -233,7 +233,7 @@
      <string>Sample</string>
     </property>
    </widget>
-   <widget class="QLabel" name="labelMagnify">
+   <widget class="QLabel" name="labelZoom">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -243,7 +243,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Magnify</string>
+     <string>Zoom</string>
     </property>
    </widget>
    <widget class="Line" name="line_3">
@@ -341,16 +341,16 @@
      </rect>
     </property>
     <property name="minimum">
-     <number>1</number>
+     <number>-10</number>
     </property>
     <property name="maximum">
-     <number>5</number>
+     <number>10</number>
     </property>
     <property name="pageStep">
      <number>1</number>
     </property>
     <property name="value">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -359,14 +359,14 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>23</x>
+      <x>20</x>
       <y>225</y>
-      <width>190</width>
+      <width>200</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>1x      2x       3x      4x      5x</string>
+     <string>0.1x   0.2x    1x      5x      10x</string>
     </property>
    </widget>
    <widget class="QLabel" name="labelCrop">

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sat Aug 27 20:44:04 2011
+** Created: Sun Aug 28 12:41:29 2011
 **      by: Qt User Interface Compiler version 4.7.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -44,7 +44,7 @@ public:
     QFrame *line_2;
     QPushButton *saveButton;
     QLabel *labelSample;
-    QLabel *labelMagnify;
+    QLabel *labelZoom;
     QFrame *line_3;
     QLineEdit *inputWidth;
     QLineEdit *inputHeight;
@@ -154,9 +154,9 @@ public:
         labelSample = new QLabel(centralWidget);
         labelSample->setObjectName(QString::fromUtf8("labelSample"));
         labelSample->setGeometry(QRect(20, 10, 62, 16));
-        labelMagnify = new QLabel(centralWidget);
-        labelMagnify->setObjectName(QString::fromUtf8("labelMagnify"));
-        labelMagnify->setGeometry(QRect(20, 200, 60, 16));
+        labelZoom = new QLabel(centralWidget);
+        labelZoom->setObjectName(QString::fromUtf8("labelZoom"));
+        labelZoom->setGeometry(QRect(20, 200, 60, 16));
         line_3 = new QFrame(centralWidget);
         line_3->setObjectName(QString::fromUtf8("line_3"));
         line_3->setGeometry(QRect(20, 208, 190, 20));
@@ -183,14 +183,14 @@ public:
         resizeSlider = new QSlider(centralWidget);
         resizeSlider->setObjectName(QString::fromUtf8("resizeSlider"));
         resizeSlider->setGeometry(QRect(20, 237, 190, 22));
-        resizeSlider->setMinimum(1);
-        resizeSlider->setMaximum(5);
+        resizeSlider->setMinimum(-10);
+        resizeSlider->setMaximum(10);
         resizeSlider->setPageStep(1);
-        resizeSlider->setValue(1);
+        resizeSlider->setValue(0);
         resizeSlider->setOrientation(Qt::Horizontal);
         label = new QLabel(centralWidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(23, 225, 190, 16));
+        label->setGeometry(QRect(20, 225, 200, 16));
         labelCrop = new QLabel(centralWidget);
         labelCrop->setObjectName(QString::fromUtf8("labelCrop"));
         labelCrop->setGeometry(QRect(20, 360, 60, 16));
@@ -264,12 +264,12 @@ public:
         labelRotate->setText(QApplication::translate("MainWindow", "Rotate", 0, QApplication::UnicodeUTF8));
         saveButton->setText(QApplication::translate("MainWindow", "Save", 0, QApplication::UnicodeUTF8));
         labelSample->setText(QApplication::translate("MainWindow", "Sample", 0, QApplication::UnicodeUTF8));
-        labelMagnify->setText(QApplication::translate("MainWindow", "Magnify", 0, QApplication::UnicodeUTF8));
+        labelZoom->setText(QApplication::translate("MainWindow", "Zoom", 0, QApplication::UnicodeUTF8));
         labelWidth->setText(QApplication::translate("MainWindow", "width", 0, QApplication::UnicodeUTF8));
         labelHeight->setText(QApplication::translate("MainWindow", "height", 0, QApplication::UnicodeUTF8));
         applyButton->setText(QApplication::translate("MainWindow", "Apply Changes", 0, QApplication::UnicodeUTF8));
         boxAspectRatio->setText(QApplication::translate("MainWindow", "Aspect Ratio", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("MainWindow", "1x      2x       3x      4x      5x", 0, QApplication::UnicodeUTF8));
+        label->setText(QApplication::translate("MainWindow", "0.1x   0.2x    1x      5x      10x", 0, QApplication::UnicodeUTF8));
         labelCrop->setText(QApplication::translate("MainWindow", "Crop", 0, QApplication::UnicodeUTF8));
         labelResize->setText(QApplication::translate("MainWindow", "Resize", 0, QApplication::UnicodeUTF8));
         labelStartX->setText(QApplication::translate("MainWindow", "X start", 0, QApplication::UnicodeUTF8));

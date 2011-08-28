@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(exit()));
 
     connect(ui->resizeButton, SIGNAL(clicked()), this, SLOT(resize()));
-    connect(ui->resizeSlider, SIGNAL(sliderReleased()), this, SLOT(magnify()));
+    connect(ui->resizeSlider, SIGNAL(sliderReleased()), this, SLOT(zoom()));
     connect(ui->cropButton, SIGNAL(clicked()), this, SLOT(crop()));
     connect(ui->rightButton, SIGNAL(clicked()), this, SLOT(rotateRight()));
     connect(ui->leftButton, SIGNAL(clicked()), this, SLOT(rotateLeft()));
@@ -72,14 +72,21 @@ void MainWindow::saveFile(void)
     targetImg->save(path);
 }
 
-void MainWindow::magnify(void)
+void MainWindow::zoom(void)
 {
-   qDebug() << "Foi chamado o magnify";
+    double sliderValue = ui->resizeSlider->value()-1;
+    int width = selectedImage->width();
+    int height = selectedImage->height();
 
-   int newWidth = selectedImage->width() * ui->resizeSlider->value();
-   int newHeight = selectedImage->height() * ui->resizeSlider->value();
+    if(sliderValue < 0){
+        sliderValue = (1/sliderValue)*(-1);
+        qDebug() << "Foi chamado o magnify de valor" << sliderValue;
+        simpleResize(width * sliderValue, height * sliderValue);
+    }else if(sliderValue >= 0){
+        qDebug() << "Foi chamado o magnify de valor" << sliderValue+2;
+        simpleResize(width * (sliderValue + 2), height * (sliderValue + 2));
+    }
 
-   simpleResize(newWidth, newHeight);
 }
 
 void MainWindow::resize(void)

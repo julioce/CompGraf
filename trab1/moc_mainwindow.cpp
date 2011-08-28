@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Sat Aug 27 20:44:07 2011
+** Created: Sun Aug 28 12:41:31 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -36,17 +36,17 @@ static const uint qt_meta_data_MainWindow[] = {
       37,   11,   11,   11, 0x0a,
       48,   11,   11,   11, 0x0a,
       55,   11,   11,   11, 0x0a,
-      65,   11,   11,   11, 0x0a,
-      74,   11,   11,   11, 0x0a,
-      81,   11,   11,   11, 0x0a,
-      95,   11,   11,   11, 0x0a,
+      62,   11,   11,   11, 0x0a,
+      71,   11,   11,   11, 0x0a,
+      78,   11,   11,   11, 0x0a,
+      92,   11,   11,   11, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_MainWindow[] = {
     "MainWindow\0\0openFile()\0saveChanges()\0"
-    "saveFile()\0exit()\0magnify()\0resize()\0"
+    "saveFile()\0exit()\0zoom()\0resize()\0"
     "crop()\0rotateRight()\0rotateLeft()\0"
 };
 
@@ -83,7 +83,7 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 1: saveChanges(); break;
         case 2: saveFile(); break;
         case 3: exit(); break;
-        case 4: magnify(); break;
+        case 4: zoom(); break;
         case 5: resize(); break;
         case 6: crop(); break;
         case 7: rotateRight(); break;

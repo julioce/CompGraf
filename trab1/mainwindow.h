@@ -22,7 +22,7 @@ public slots:
    void saveFile(void);
    void exit(void);
 
-   void magnify(void);
+   void zoom(void);
    void resize(void);
    void crop(void);
    void rotateRight(void);
