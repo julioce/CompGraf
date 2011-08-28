@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->resizeButton, SIGNAL(clicked()), this, SLOT(resize()));
     connect(ui->resizeSlider, SIGNAL(sliderReleased()), this, SLOT(magnify()));
+    connect(ui->cropButton, SIGNAL(clicked()), this, SLOT(crop()));
     connect(ui->rightButton, SIGNAL(clicked()), this, SLOT(rotateRight()));
     connect(ui->leftButton, SIGNAL(clicked()), this, SLOT(rotateLeft()));
 }
@@ -129,12 +130,35 @@ void MainWindow::simpleResize(int target_width, int target_height)
     ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
 }
 
-void MainWindow::crop(int x1, int y1, int x2, int y2) {
+void MainWindow::crop(void)
+{
+    int newStartX = ui->labelStartXposition->text().toInt(0);
+    int newStartY = ui->labelStartYposition->text().toInt(0);
+    int newEndX = ui->labelEndXposition->text().toInt(0);
+    int newEndY = ui->labelEndYposition->text().toInt(0);
+    int width = newEndX-newStartX;
+    int height = newEndY-newStartY;
+
+    qDebug() << "Foi chamado o crop:";
+    qDebug() << "from (" << newStartX << "," << newStartY
+             << ") to (" << newEndX << "," << newEndY << ")";
+
+    if( (width > 0 && height >0)
+        &&
+        (newStartX > 0 && newStartY > 0 && newEndX > 0 && newEndY > 0)
+        &&
+        (newStartX+width < selectedImage->width() && newStartY+height < selectedImage->height() &&
+         newEndX < selectedImage->width() && newEndY < selectedImage->height()))
+    {
+
+        simpleCrop(newStartX, newStartY, newEndX, newEndY);
+    }
+}
+
+void MainWindow::simpleCrop(int x1, int y1, int x2, int y2) {
 
     int target_width = x2 - x1;
     int target_height = y2 - y1;
-
-    qDebug() << "x1 " << x1 << "y1 " << y1 << "target_width " << target_width;
 
     targetImg = new QImage(target_width, target_height, selectedImage->format());
 

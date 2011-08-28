@@ -24,6 +24,7 @@ public slots:
 
    void magnify(void);
    void resize(void);
+   void crop(void);
    void rotateRight(void);
    void rotateLeft(void);
 
@@ -31,7 +32,7 @@ private:
     Ui::MainWindow *ui;
     QImage *selectedImage, *targetImg;
     void simpleResize(int w2, int h2);
-    void crop(int x1, int y1, int x2, int y2);
+    void simpleCrop(int x1, int y1, int x2, int y2);
 
 };
 

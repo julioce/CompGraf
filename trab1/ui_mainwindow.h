@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sat Aug 27 19:05:37 2011
+** Created: Sat Aug 27 20:44:04 2011
 **      by: Qt User Interface Compiler version 4.7.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -58,6 +58,15 @@ public:
     QFrame *line_4;
     QLabel *labelResize;
     QFrame *line_5;
+    QLabel *labelStartX;
+    QLabel *labelStartY;
+    QLabel *labelEndX;
+    QLabel *labelEndY;
+    QLineEdit *labelStartXposition;
+    QLineEdit *labelStartYposition;
+    QLineEdit *labelEndXposition;
+    QLineEdit *labelEndYposition;
+    QPushButton *cropButton;
     QMenuBar *menuBar;
     QMenu *menuFile;
 
@@ -118,7 +127,7 @@ public:
         imgResult->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         rightButton = new QPushButton(centralWidget);
         rightButton->setObjectName(QString::fromUtf8("rightButton"));
-        rightButton->setGeometry(QRect(70, 473, 50, 50));
+        rightButton->setGeometry(QRect(70, 480, 50, 50));
         rightButton->setAutoFillBackground(false);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Images/Redo.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -126,17 +135,17 @@ public:
         rightButton->setIconSize(QSize(32, 32));
         leftButton = new QPushButton(centralWidget);
         leftButton->setObjectName(QString::fromUtf8("leftButton"));
-        leftButton->setGeometry(QRect(15, 473, 50, 50));
+        leftButton->setGeometry(QRect(15, 480, 50, 50));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/Images/Undo.png"), QSize(), QIcon::Normal, QIcon::Off);
         leftButton->setIcon(icon1);
         leftButton->setIconSize(QSize(32, 32));
         labelRotate = new QLabel(centralWidget);
         labelRotate->setObjectName(QString::fromUtf8("labelRotate"));
-        labelRotate->setGeometry(QRect(20, 450, 60, 17));
+        labelRotate->setGeometry(QRect(20, 457, 60, 17));
         line_2 = new QFrame(centralWidget);
         line_2->setObjectName(QString::fromUtf8("line_2"));
-        line_2->setGeometry(QRect(20, 458, 190, 20));
+        line_2->setGeometry(QRect(20, 465, 190, 20));
         line_2->setFrameShape(QFrame::HLine);
         line_2->setFrameShadow(QFrame::Sunken);
         saveButton = new QPushButton(centralWidget);
@@ -198,6 +207,33 @@ public:
         line_5->setGeometry(QRect(20, 278, 190, 20));
         line_5->setFrameShape(QFrame::HLine);
         line_5->setFrameShadow(QFrame::Sunken);
+        labelStartX = new QLabel(centralWidget);
+        labelStartX->setObjectName(QString::fromUtf8("labelStartX"));
+        labelStartX->setGeometry(QRect(70, 396, 41, 16));
+        labelStartY = new QLabel(centralWidget);
+        labelStartY->setObjectName(QString::fromUtf8("labelStartY"));
+        labelStartY->setGeometry(QRect(70, 418, 41, 16));
+        labelEndX = new QLabel(centralWidget);
+        labelEndX->setObjectName(QString::fromUtf8("labelEndX"));
+        labelEndX->setGeometry(QRect(173, 396, 41, 16));
+        labelEndY = new QLabel(centralWidget);
+        labelEndY->setObjectName(QString::fromUtf8("labelEndY"));
+        labelEndY->setGeometry(QRect(173, 418, 41, 16));
+        labelStartXposition = new QLineEdit(centralWidget);
+        labelStartXposition->setObjectName(QString::fromUtf8("labelStartXposition"));
+        labelStartXposition->setGeometry(QRect(20, 390, 44, 22));
+        labelStartYposition = new QLineEdit(centralWidget);
+        labelStartYposition->setObjectName(QString::fromUtf8("labelStartYposition"));
+        labelStartYposition->setGeometry(QRect(20, 410, 44, 22));
+        labelEndXposition = new QLineEdit(centralWidget);
+        labelEndXposition->setObjectName(QString::fromUtf8("labelEndXposition"));
+        labelEndXposition->setGeometry(QRect(122, 390, 44, 22));
+        labelEndYposition = new QLineEdit(centralWidget);
+        labelEndYposition->setObjectName(QString::fromUtf8("labelEndYposition"));
+        labelEndYposition->setGeometry(QRect(122, 410, 44, 22));
+        cropButton = new QPushButton(centralWidget);
+        cropButton->setObjectName(QString::fromUtf8("cropButton"));
+        cropButton->setGeometry(QRect(155, 435, 61, 27));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
@@ -236,6 +272,11 @@ public:
         label->setText(QApplication::translate("MainWindow", "1x      2x       3x      4x      5x", 0, QApplication::UnicodeUTF8));
         labelCrop->setText(QApplication::translate("MainWindow", "Crop", 0, QApplication::UnicodeUTF8));
         labelResize->setText(QApplication::translate("MainWindow", "Resize", 0, QApplication::UnicodeUTF8));
+        labelStartX->setText(QApplication::translate("MainWindow", "X start", 0, QApplication::UnicodeUTF8));
+        labelStartY->setText(QApplication::translate("MainWindow", "Y start", 0, QApplication::UnicodeUTF8));
+        labelEndX->setText(QApplication::translate("MainWindow", "X end", 0, QApplication::UnicodeUTF8));
+        labelEndY->setText(QApplication::translate("MainWindow", "Y end", 0, QApplication::UnicodeUTF8));
+        cropButton->setText(QApplication::translate("MainWindow", "Crop", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

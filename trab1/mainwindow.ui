@@ -136,7 +136,7 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>473</y>
+      <y>480</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -162,7 +162,7 @@
     <property name="geometry">
      <rect>
       <x>15</x>
-      <y>473</y>
+      <y>480</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -185,7 +185,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>450</y>
+      <y>457</y>
       <width>60</width>
       <height>17</height>
      </rect>
@@ -198,7 +198,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>458</y>
+      <y>465</y>
       <width>190</width>
       <height>20</height>
      </rect>
@@ -419,6 +419,111 @@
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelStartX">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>396</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>X start</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelStartY">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>418</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Y start</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelEndX">
+    <property name="geometry">
+     <rect>
+      <x>173</x>
+      <y>396</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>X end</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelEndY">
+    <property name="geometry">
+     <rect>
+      <x>173</x>
+      <y>418</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Y end</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="labelStartXposition">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>390</y>
+      <width>44</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="labelStartYposition">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>410</y>
+      <width>44</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="labelEndXposition">
+    <property name="geometry">
+     <rect>
+      <x>122</x>
+      <y>390</y>
+      <width>44</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="labelEndYposition">
+    <property name="geometry">
+     <rect>
+      <x>122</x>
+      <y>410</y>
+      <width>44</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="cropButton">
+    <property name="geometry">
+     <rect>
+      <x>155</x>
+      <y>435</y>
+      <width>61</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Crop</string>
     </property>
    </widget>
   </widget>
