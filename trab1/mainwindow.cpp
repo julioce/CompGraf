@@ -91,7 +91,7 @@ void MainWindow::zoom(void)
 
 void MainWindow::resize(void)
 {
-    qDebug() << "Foi chamado o resize";
+    qDebug() << "Foi chamado o resize:";
     double aspectRatio;
     int newWidth = ui->inputWidth->text().toInt(0);
     int newHeight = ui->inputHeight->text().toInt(0);
@@ -100,15 +100,35 @@ void MainWindow::resize(void)
         if(ui->boxAspectRatio->isChecked()){
 
             aspectRatio = selectedImage->width() / (double)selectedImage->height();
-            qDebug() << aspectRatio;
+            qDebug() << "   -Com aspect ratio selecionado de" << aspectRatio;
 
             if(newWidth > newHeight){
-                simpleResize(newHeight*aspectRatio, newHeight);
+                if(ui->boxBilinear->isChecked()){
+                    qDebug() << "   -Algoritmo Bilinear pela altura.";
+                    bilinearResize(newHeight*aspectRatio, newHeight);
+                }else{
+                    qDebug() << "   -Algoritmo Vizinho proximo pela altura.";
+                    simpleResize(newHeight*aspectRatio, newHeight);
+                }
             }else{
-                simpleResize(newWidth*aspectRatio, newWidth);
+                if(ui->boxBilinear->isChecked()){
+                    qDebug() << "   -Algoritmo Bilinear pela largura.";
+                    bilinearResize(newWidth*aspectRatio, newWidth);
+                }else{
+                    qDebug() << "   -Algoritmo Vizinho proximo pela largura.";
+                    simpleResize(newWidth*aspectRatio, newWidth);
+                }
             }
+
         }else{
-            simpleResize(newWidth, newHeight);
+            qDebug() << "   -Sem aspect ratio.";
+            if(ui->boxBilinear->isChecked()){
+                qDebug() << "   -Algoritmo Bilinear.";
+                bilinearResize(newWidth, newHeight);
+            }else{
+                qDebug() << "   -Algoritmo Vizinho proximo.";
+                simpleResize(newWidth, newHeight);
+            }
         }
     }
 }
@@ -130,6 +150,41 @@ void MainWindow::simpleResize(int target_width, int target_height)
 
             QRgb qrgb = selectedImage->pixel(x_source, y_source);
             targetImg->setPixel(i, j, qrgb);
+        }
+    }
+
+    ui->imgResult->setGeometry(ui->imgResult->x(), ui->imgResult->y(), targetImg->width(), targetImg->height());
+    ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
+}
+
+/* Bilinear Image Scaling */
+void MainWindow::bilinearResize(int target_width, int target_height)
+{
+    targetImg = new QImage(target_width, target_height, selectedImage->format());
+
+    double x_ratio = selectedImage->width() / (double)target_width;
+    double y_ratio = selectedImage->height() / (double)target_height;
+    double x_source, y_source, red, green, blue;
+
+    for (int i = 0; i < target_width; i++) {
+        for (int j = 0; j < target_height; j++) {
+
+            x_source = floor(i * x_ratio);
+            y_source = floor(j * y_ratio);
+
+            QRgb center = selectedImage->pixel(x_source, y_source);
+            QRgb left = selectedImage->pixel(x_source-1, y_source);
+            QRgb right = selectedImage->pixel(x_source+1, y_source);
+            QRgb upper = selectedImage->pixel(x_source, y_source-1);
+            QRgb down = selectedImage->pixel(x_source, y_source+1);
+
+            red = ((qRed(left) + qRed(right) + qRed(upper) + qRed(down))/4.0 + qRed(center)*2)/3.0;
+            green = ((qGreen(left) + qGreen(right) + qGreen(upper) + qGreen(down))/4.0 + qGreen(center)*2)/3.0;
+            blue = ((qBlue(left) + qBlue(right) + qBlue(upper) + qBlue(down))/4.0 + qBlue(center)*2)/3.0;
+
+            QRgb average = qRgb(red, green, blue);
+
+            targetImg->setPixel(i, j, average);
         }
     }
 
