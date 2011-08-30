@@ -1,2 +1,4 @@
 *.user
-./ImageFactory-build-desktop/*
+ImageFactory
+Makefile
+*.o
