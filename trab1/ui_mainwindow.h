@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sun Aug 28 20:31:27 2011
+** Created: Thu Sep 1 20:16:33 2011
 **      by: Qt User Interface Compiler version 4.7.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -15,6 +15,7 @@
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QCheckBox>
+#include <QtGui/QComboBox>
 #include <QtGui/QFrame>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
@@ -67,7 +68,7 @@ public:
     QLineEdit *labelEndXposition;
     QLineEdit *labelEndYposition;
     QPushButton *cropButton;
-    QCheckBox *boxBilinear;
+    QComboBox *boxResize;
     QMenuBar *menuBar;
     QMenu *menuFile;
 
@@ -115,7 +116,7 @@ public:
         line->setFrameShadow(QFrame::Sunken);
         resizeButton = new QPushButton(centralWidget);
         resizeButton->setObjectName(QString::fromUtf8("resizeButton"));
-        resizeButton->setGeometry(QRect(145, 332, 71, 27));
+        resizeButton->setGeometry(QRect(145, 345, 71, 27));
         imgResult = new QLabel(centralWidget);
         imgResult->setObjectName(QString::fromUtf8("imgResult"));
         imgResult->setGeometry(QRect(249, 30, 530, 521));
@@ -157,7 +158,7 @@ public:
         saveButton->setGeometry(QRect(155, 538, 61, 27));
         labelSample = new QLabel(centralWidget);
         labelSample->setObjectName(QString::fromUtf8("labelSample"));
-        labelSample->setGeometry(QRect(20, 10, 62, 16));
+        labelSample->setGeometry(QRect(20, 10, 111, 16));
         labelZoom = new QLabel(centralWidget);
         labelZoom->setObjectName(QString::fromUtf8("labelZoom"));
         labelZoom->setGeometry(QRect(20, 200, 60, 16));
@@ -183,7 +184,7 @@ public:
         applyButton->setGeometry(QRect(16, 538, 121, 27));
         boxAspectRatio = new QCheckBox(centralWidget);
         boxAspectRatio->setObjectName(QString::fromUtf8("boxAspectRatio"));
-        boxAspectRatio->setGeometry(QRect(19, 324, 111, 20));
+        boxAspectRatio->setGeometry(QRect(19, 352, 111, 20));
         resizeSlider = new QSlider(centralWidget);
         resizeSlider->setObjectName(QString::fromUtf8("resizeSlider"));
         resizeSlider->setGeometry(QRect(20, 237, 190, 22));
@@ -238,9 +239,13 @@ public:
         cropButton = new QPushButton(centralWidget);
         cropButton->setObjectName(QString::fromUtf8("cropButton"));
         cropButton->setGeometry(QRect(155, 450, 61, 27));
-        boxBilinear = new QCheckBox(centralWidget);
-        boxBilinear->setObjectName(QString::fromUtf8("boxBilinear"));
-        boxBilinear->setGeometry(QRect(19, 340, 111, 20));
+        boxResize = new QComboBox(centralWidget);
+        boxResize->setObjectName(QString::fromUtf8("boxResize"));
+        boxResize->setGeometry(QRect(15, 320, 161, 26));
+        boxResize->setMaxVisibleItems(3);
+        boxResize->setMaxCount(3);
+        boxResize->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLength);
+        boxResize->setMinimumContentsLength(3);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
@@ -254,6 +259,9 @@ public:
         menuFile->addAction(actionExit);
 
         retranslateUi(MainWindow);
+
+        boxResize->setCurrentIndex(0);
+
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -270,7 +278,7 @@ public:
         leftButton->setText(QString());
         labelRotate->setText(QApplication::translate("MainWindow", "Rotate", 0, QApplication::UnicodeUTF8));
         saveButton->setText(QApplication::translate("MainWindow", "Save", 0, QApplication::UnicodeUTF8));
-        labelSample->setText(QApplication::translate("MainWindow", "Sample", 0, QApplication::UnicodeUTF8));
+        labelSample->setText(QApplication::translate("MainWindow", "Original Sample", 0, QApplication::UnicodeUTF8));
         labelZoom->setText(QApplication::translate("MainWindow", "Zoom", 0, QApplication::UnicodeUTF8));
         labelWidth->setText(QApplication::translate("MainWindow", "width", 0, QApplication::UnicodeUTF8));
         labelHeight->setText(QApplication::translate("MainWindow", "height", 0, QApplication::UnicodeUTF8));
@@ -284,7 +292,12 @@ public:
         labelEndX->setText(QApplication::translate("MainWindow", "X end", 0, QApplication::UnicodeUTF8));
         labelEndY->setText(QApplication::translate("MainWindow", "Y end", 0, QApplication::UnicodeUTF8));
         cropButton->setText(QApplication::translate("MainWindow", "Crop", 0, QApplication::UnicodeUTF8));
-        boxBilinear->setText(QApplication::translate("MainWindow", "Billinear", 0, QApplication::UnicodeUTF8));
+        boxResize->clear();
+        boxResize->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "Nearest Neibourgh", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "Bilinear", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "Bicubic", 0, QApplication::UnicodeUTF8)
+        );
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

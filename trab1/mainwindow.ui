@@ -86,7 +86,7 @@
     <property name="geometry">
      <rect>
       <x>145</x>
-      <y>332</y>
+      <y>340</y>
       <width>71</width>
       <height>27</height>
      </rect>
@@ -225,12 +225,12 @@
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>62</width>
+      <width>111</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Sample</string>
+     <string>Original Sample</string>
     </property>
    </widget>
    <widget class="QLabel" name="labelZoom">
@@ -308,7 +308,7 @@
    <widget class="QPushButton" name="applyButton">
     <property name="geometry">
      <rect>
-      <x>16</x>
+      <x>15</x>
       <y>538</y>
       <width>121</width>
       <height>27</height>
@@ -322,7 +322,7 @@
     <property name="geometry">
      <rect>
       <x>19</x>
-      <y>324</y>
+      <y>347</y>
       <width>111</width>
       <height>20</height>
      </rect>
@@ -526,18 +526,45 @@
      <string>Crop</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="boxBilinear">
+   <widget class="QComboBox" name="boxResize">
     <property name="geometry">
      <rect>
-      <x>19</x>
-      <y>340</y>
-      <width>111</width>
-      <height>20</height>
+      <x>15</x>
+      <y>318</y>
+      <width>161</width>
+      <height>26</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Billinear</string>
+    <property name="currentIndex">
+     <number>0</number>
     </property>
+    <property name="maxVisibleItems">
+     <number>3</number>
+    </property>
+    <property name="maxCount">
+     <number>3</number>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+    </property>
+    <property name="minimumContentsLength">
+     <number>3</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>Nearest Neibourgh</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Bilinear</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Bicubic</string>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

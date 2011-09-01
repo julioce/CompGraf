@@ -95,6 +95,7 @@ void MainWindow::resize(void)
     double aspectRatio;
     int newWidth = ui->inputWidth->text().toInt(0);
     int newHeight = ui->inputHeight->text().toInt(0);
+    int resizeType = ui->boxResize->currentIndex();
 
     if(newWidth > 0 && newHeight > 0){
         if(ui->boxAspectRatio->isChecked()){
@@ -102,18 +103,25 @@ void MainWindow::resize(void)
             aspectRatio = selectedImage->width() / (double)selectedImage->height();
             qDebug() << "   -Com aspect ratio selecionado de" << aspectRatio;
 
+
             if(newWidth > newHeight){
-                if(ui->boxBilinear->isChecked()){
+                if(resizeType == 1){
                     qDebug() << "   -Algoritmo Bilinear pela altura.";
                     bilinearResize(newHeight*aspectRatio, newHeight);
+                }else if(resizeType == 2){
+                    qDebug() << "   -Algoritmo Bicubico pela altura.";
+                    bicubicResize(newHeight*aspectRatio, newHeight);
                 }else{
                     qDebug() << "   -Algoritmo Vizinho proximo pela altura.";
                     simpleResize(newHeight*aspectRatio, newHeight);
                 }
             }else{
-                if(ui->boxBilinear->isChecked()){
+                if(resizeType == 1){
                     qDebug() << "   -Algoritmo Bilinear pela largura.";
                     bilinearResize(newWidth*aspectRatio, newWidth);
+                }else if(resizeType == 2){
+                    qDebug() << "   -Algoritmo Bicubico pela largura.";
+                    bicubicResize(newWidth*aspectRatio, newWidth);
                 }else{
                     qDebug() << "   -Algoritmo Vizinho proximo pela largura.";
                     simpleResize(newWidth*aspectRatio, newWidth);
@@ -122,9 +130,12 @@ void MainWindow::resize(void)
 
         }else{
             qDebug() << "   -Sem aspect ratio.";
-            if(ui->boxBilinear->isChecked()){
+            if(resizeType == 1){
                 qDebug() << "   -Algoritmo Bilinear.";
                 bilinearResize(newWidth, newHeight);
+            }else if(resizeType == 2){
+                qDebug() << "   -Algoritmo Bicubico.";
+                bicubicResize(newWidth, newHeight);
             }else{
                 qDebug() << "   -Algoritmo Vizinho proximo.";
                 simpleResize(newWidth, newHeight);
@@ -181,6 +192,52 @@ void MainWindow::bilinearResize(int target_width, int target_height)
             red = ((qRed(left) + qRed(right) + qRed(upper) + qRed(down))/4.0 + qRed(center)*2)/3.0;
             green = ((qGreen(left) + qGreen(right) + qGreen(upper) + qGreen(down))/4.0 + qGreen(center)*2)/3.0;
             blue = ((qBlue(left) + qBlue(right) + qBlue(upper) + qBlue(down))/4.0 + qBlue(center)*2)/3.0;
+
+            QRgb average = qRgb(red, green, blue);
+
+            targetImg->setPixel(i, j, average);
+        }
+    }
+
+    ui->imgResult->setGeometry(ui->imgResult->x(), ui->imgResult->y(), targetImg->width(), targetImg->height());
+    ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
+}
+
+/* Bicubic Image Scaling */
+void MainWindow::bicubicResize(int target_width, int target_height)
+{
+    targetImg = new QImage(target_width, target_height, selectedImage->format());
+
+    double x_ratio = selectedImage->width() / (double)target_width;
+    double y_ratio = selectedImage->height() / (double)target_height;
+    double x_source, y_source, red, green, blue;
+
+    for (int i = 0; i < target_width; i++) {
+        for (int j = 0; j < target_height; j++) {
+
+            x_source = floor(i * x_ratio);
+            y_source = floor(j * y_ratio);
+
+            QRgb leftUpper = selectedImage->pixel(x_source-1, y_source-1);
+            QRgb upper = selectedImage->pixel(x_source, y_source-1);
+            QRgb rightupper = selectedImage->pixel(x_source+1, y_source-1);
+            QRgb left = selectedImage->pixel(x_source-1, y_source);
+
+            QRgb center = selectedImage->pixel(x_source, y_source);
+
+            QRgb right = selectedImage->pixel(x_source+1, y_source);
+            QRgb leftDown = selectedImage->pixel(x_source-1, y_source+1);
+            QRgb down = selectedImage->pixel(x_source, y_source+1);
+            QRgb rightDown = selectedImage->pixel(x_source+1, y_source+1);
+
+            red = ((qRed(leftUpper) + qRed(upper) + qRed(rightupper) + qRed(left) +
+                    qRed(right) + qRed(leftDown) + qRed(down) + qRed(rightDown))/8.0 + qRed(center))/2.0;
+
+            green = ((qGreen(leftUpper) + qGreen(upper) + qGreen(rightupper) + qGreen(left) +
+                      qGreen(right) + qGreen(leftDown) + qGreen(down) + qGreen(rightDown))/8.0 + qGreen(center))/2.0;
+
+            blue = ((qBlue(leftUpper) + qBlue(upper) + qBlue(rightupper) + qBlue(left) +
+                     qBlue(right) + qBlue(leftDown) + qBlue(down) + qBlue(rightDown))/8.0 + qBlue(center))/2.0;
 
             QRgb average = qRgb(red, green, blue);
 

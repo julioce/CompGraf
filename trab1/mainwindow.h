@@ -33,6 +33,7 @@ private:
     QImage *selectedImage, *targetImg;
     void simpleResize(int w2, int h2);
     void bilinearResize(int w2, int h2);
+    void bicubicResize(int w2, int h2);
     void simpleCrop(int x1, int y1, int x2, int y2);
 
 };
