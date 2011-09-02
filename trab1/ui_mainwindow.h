@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Fri Sep 2 11:30:04 2011
+** Created: Fri Sep 2 11:48:45 2011
 **      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -77,6 +77,7 @@ public:
     QPushButton *reflectionButton;
     QMenuBar *menuBar;
     QMenu *menuFile;
+    QMenu *menuEffects;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -282,9 +283,12 @@ public:
         menuBar->setGeometry(QRect(0, 0, 800, 25));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
+        menuEffects = new QMenu(menuBar);
+        menuEffects->setObjectName(QString::fromUtf8("menuEffects"));
         MainWindow->setMenuBar(menuBar);
 
         menuBar->addAction(menuFile->menuAction());
+        menuBar->addAction(menuEffects->menuAction());
         menuFile->addAction(actionOpenFile);
         menuFile->addAction(actionExit);
 
@@ -332,6 +336,7 @@ public:
         mirrorButton->setText(QString());
         reflectionButton->setText(QString());
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
+        menuEffects->setTitle(QApplication::translate("MainWindow", "Effects", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

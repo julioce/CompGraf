@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->applyButton, SIGNAL(clicked()), this, SLOT(saveChanges()));
     connect(ui->saveButton, SIGNAL(clicked()), this, SLOT(saveFile()));
     connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(exit()));
+    connect(ui->menuEffects, SIGNAL(triggered()), this, SLOT(openViewEffects()));
 
     connect(ui->resizeButton, SIGNAL(clicked()), this, SLOT(resize()));
     connect(ui->resizeSlider, SIGNAL(sliderReleased()), this, SLOT(zoom()));
@@ -41,6 +42,12 @@ void MainWindow::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+void MainWindow::openViewEffects(void) {
+
+
+
 }
 
 void MainWindow::openFile(void)
@@ -370,7 +377,7 @@ void MainWindow::mirror(void) {
 
 void MainWindow::reflection(void) {
 
-    qDebug() << "Mirror.";
+    qDebug() << "Reflection.";
     int target_width = selectedImage->width();
     int target_height = selectedImage->height();
     targetImg = new QImage(target_width, target_height, selectedImage->format());
@@ -386,5 +393,29 @@ void MainWindow::reflection(void) {
 
     ui->imgResult->setGeometry(ui->imgResult->x(), ui->imgResult->y(), targetImg->width(), targetImg->height());
     ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
+}
+
+void MainWindow::grayScale(void) {
+
+    qDebug() << "grayScale.";
+    int target_width = selectedImage->width();
+    int target_height = selectedImage->height();
+    int media;
+    targetImg = new QImage(target_width, target_height, selectedImage->format());
+
+
+    for (int i = 0; i < target_width; i++) {
+        for (int j = 0; j < target_height; j++) {
+
+            QRgb qrgb = selectedImage->pixel(i, j);
+            media = (qBlue(qrgb) + qGreen(qrgb) + qRed(qrgb)) / 3;
+            QRgb grayPixel = qRgb(media, media, media);
+            targetImg->setPixel(i, j, qrgb);
+        }
+    }
+
+    ui->imgResult->setGeometry(ui->imgResult->x(), ui->imgResult->y(), targetImg->width(), targetImg->height());
+    ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
+
 }
 

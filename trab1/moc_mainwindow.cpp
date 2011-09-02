@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Fri Sep 2 11:30:06 2011
+** Created: Fri Sep 2 11:48:47 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        4,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -36,21 +36,24 @@ static const uint qt_meta_data_MainWindow[] = {
       37,   11,   11,   11, 0x0a,
       48,   11,   11,   11, 0x0a,
       55,   11,   11,   11, 0x0a,
-      62,   11,   11,   11, 0x0a,
-      71,   11,   11,   11, 0x0a,
-      78,   11,   11,   11, 0x0a,
-      92,   11,   11,   11, 0x0a,
-     105,   11,   11,   11, 0x0a,
-     114,   11,   11,   11, 0x0a,
+      73,   11,   11,   11, 0x0a,
+      80,   11,   11,   11, 0x0a,
+      89,   11,   11,   11, 0x0a,
+      96,   11,   11,   11, 0x0a,
+     110,   11,   11,   11, 0x0a,
+     123,   11,   11,   11, 0x0a,
+     132,   11,   11,   11, 0x0a,
+     145,   11,   11,   11, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_MainWindow[] = {
     "MainWindow\0\0openFile()\0saveChanges()\0"
-    "saveFile()\0exit()\0zoom()\0resize()\0"
-    "crop()\0rotateRight()\0rotateLeft()\0"
-    "mirror()\0reflection()\0"
+    "saveFile()\0exit()\0openViewEffects()\0"
+    "zoom()\0resize()\0crop()\0rotateRight()\0"
+    "rotateLeft()\0mirror()\0reflection()\0"
+    "grayScale()\0"
 };
 
 const QMetaObject MainWindow::staticMetaObject = {
@@ -86,16 +89,18 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 1: saveChanges(); break;
         case 2: saveFile(); break;
         case 3: exit(); break;
-        case 4: zoom(); break;
-        case 5: resize(); break;
-        case 6: crop(); break;
-        case 7: rotateRight(); break;
-        case 8: rotateLeft(); break;
-        case 9: mirror(); break;
-        case 10: reflection(); break;
+        case 4: openViewEffects(); break;
+        case 5: zoom(); break;
+        case 6: resize(); break;
+        case 7: crop(); break;
+        case 8: rotateRight(); break;
+        case 9: rotateLeft(); break;
+        case 10: mirror(); break;
+        case 11: reflection(); break;
+        case 12: grayScale(); break;
         default: ;
         }
-        _id -= 11;
+        _id -= 13;
     }
     return _id;
 }

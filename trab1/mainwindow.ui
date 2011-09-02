@@ -671,7 +671,13 @@
     <addaction name="actionOpenFile"/>
     <addaction name="actionExit"/>
    </widget>
+   <widget class="QMenu" name="menuEffects">
+    <property name="title">
+     <string>Effects</string>
+    </property>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuEffects"/>
   </widget>
   <action name="actionOpenFile">
    <property name="text">

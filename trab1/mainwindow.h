@@ -21,6 +21,7 @@ public slots:
    void saveChanges(void);
    void saveFile(void);
    void exit(void);
+   void openViewEffects(void);
 
    void zoom(void);
    void resize(void);
@@ -29,6 +30,7 @@ public slots:
    void rotateLeft(void);
    void mirror(void);
    void reflection(void);
+   void grayScale(void);
 
 private:
     Ui::MainWindow *ui;
