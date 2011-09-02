@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Fri Sep 2 14:04:45 2011
+** Created: Fri Sep 2 15:04:46 2011
 **      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -76,9 +76,10 @@ public:
     QPushButton *mirrorButton;
     QPushButton *reflectionButton;
     QPushButton *xRayButton;
+    QPushButton *greyscaleButton;
+    QPushButton *sepiaButton;
     QMenuBar *menuBar;
     QMenu *menuFile;
-    QMenu *menuEffects;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -127,7 +128,7 @@ public:
         resizeButton->setGeometry(QRect(145, 345, 71, 27));
         imgResult = new QLabel(centralWidget);
         imgResult->setObjectName(QString::fromUtf8("imgResult"));
-        imgResult->setGeometry(QRect(253, 30, 530, 530));
+        imgResult->setGeometry(QRect(253, 30, 530, 501));
         sizePolicy.setHeightForWidth(imgResult->sizePolicy().hasHeightForWidth());
         imgResult->setSizePolicy(sizePolicy);
         imgResult->setSizeIncrement(QSize(0, 0));
@@ -160,7 +161,7 @@ public:
         line_2->setFrameShadow(QFrame::Sunken);
         saveButton = new QPushButton(centralWidget);
         saveButton->setObjectName(QString::fromUtf8("saveButton"));
-        saveButton->setGeometry(QRect(155, 538, 61, 27));
+        saveButton->setGeometry(QRect(723, 540, 61, 27));
         labelSample = new QLabel(centralWidget);
         labelSample->setObjectName(QString::fromUtf8("labelSample"));
         labelSample->setGeometry(QRect(20, 10, 111, 16));
@@ -180,13 +181,13 @@ public:
         inputHeight->setGeometry(QRect(120, 294, 44, 22));
         labelWidth = new QLabel(centralWidget);
         labelWidth->setObjectName(QString::fromUtf8("labelWidth"));
-        labelWidth->setGeometry(QRect(70, 302, 41, 16));
+        labelWidth->setGeometry(QRect(70, 301, 41, 16));
         labelHeight = new QLabel(centralWidget);
         labelHeight->setObjectName(QString::fromUtf8("labelHeight"));
-        labelHeight->setGeometry(QRect(170, 302, 41, 16));
+        labelHeight->setGeometry(QRect(170, 301, 41, 16));
         applyButton = new QPushButton(centralWidget);
         applyButton->setObjectName(QString::fromUtf8("applyButton"));
-        applyButton->setGeometry(QRect(15, 538, 121, 27));
+        applyButton->setGeometry(QRect(253, 540, 121, 27));
         boxAspectRatio = new QCheckBox(centralWidget);
         boxAspectRatio->setObjectName(QString::fromUtf8("boxAspectRatio"));
         boxAspectRatio->setGeometry(QRect(19, 352, 111, 20));
@@ -246,20 +247,20 @@ public:
         cropButton->setGeometry(QRect(155, 450, 61, 27));
         boxResize = new QComboBox(centralWidget);
         boxResize->setObjectName(QString::fromUtf8("boxResize"));
-        boxResize->setGeometry(QRect(15, 318, 161, 26));
+        boxResize->setGeometry(QRect(20, 318, 161, 26));
         boxResize->setMaxVisibleItems(3);
         boxResize->setMaxCount(3);
         boxResize->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLength);
         boxResize->setMinimumContentsLength(3);
         scrollArea = new QScrollArea(centralWidget);
         scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
-        scrollArea->setGeometry(QRect(253, 30, 530, 530));
+        scrollArea->setGeometry(QRect(253, 30, 530, 501));
         scrollArea->setLineWidth(1);
         scrollArea->setWidgetResizable(true);
         scrollArea->setAlignment(Qt::AlignCenter);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 528, 528));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 528, 499));
         scrollArea->setWidget(scrollAreaWidgetContents);
         labelResult = new QLabel(centralWidget);
         labelResult->setObjectName(QString::fromUtf8("labelResult"));
@@ -280,23 +281,34 @@ public:
         reflectionButton->setIconSize(QSize(24, 24));
         xRayButton = new QPushButton(centralWidget);
         xRayButton->setObjectName(QString::fromUtf8("xRayButton"));
-        xRayButton->setGeometry(QRect(180, 495, 34, 34));
+        xRayButton->setGeometry(QRect(20, 532, 34, 34));
         QIcon icon4;
         icon4.addFile(QString::fromUtf8(":/Images/xRay.png"), QSize(), QIcon::Normal, QIcon::Off);
         xRayButton->setIcon(icon4);
         xRayButton->setIconSize(QSize(28, 28));
+        greyscaleButton = new QPushButton(centralWidget);
+        greyscaleButton->setObjectName(QString::fromUtf8("greyscaleButton"));
+        greyscaleButton->setGeometry(QRect(180, 495, 34, 34));
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/Images/greyScale.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+        greyscaleButton->setIcon(icon5);
+        greyscaleButton->setIconSize(QSize(28, 28));
+        sepiaButton = new QPushButton(centralWidget);
+        sepiaButton->setObjectName(QString::fromUtf8("sepiaButton"));
+        sepiaButton->setGeometry(QRect(60, 532, 34, 34));
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/Images/sepia.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+        sepiaButton->setIcon(icon6);
+        sepiaButton->setIconSize(QSize(28, 28));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 800, 25));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
-        menuEffects = new QMenu(menuBar);
-        menuEffects->setObjectName(QString::fromUtf8("menuEffects"));
         MainWindow->setMenuBar(menuBar);
 
         menuBar->addAction(menuFile->menuAction());
-        menuBar->addAction(menuEffects->menuAction());
         menuFile->addAction(actionOpenFile);
         menuFile->addAction(actionExit);
 
@@ -344,8 +356,9 @@ public:
         mirrorButton->setText(QString());
         reflectionButton->setText(QString());
         xRayButton->setText(QString());
+        greyscaleButton->setText(QString());
+        sepiaButton->setText(QString());
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
-        menuEffects->setTitle(QApplication::translate("MainWindow", "Effects", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

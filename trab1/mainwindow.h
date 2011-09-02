@@ -32,6 +32,7 @@ public slots:
    void reflection(void);
    void grayScale(void);
    void xray(void);
+   void sepia(void);
 
 private:
     Ui::MainWindow *ui;

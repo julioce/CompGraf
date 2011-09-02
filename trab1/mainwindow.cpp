@@ -16,7 +16,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->applyButton, SIGNAL(clicked()), this, SLOT(saveChanges()));
     connect(ui->saveButton, SIGNAL(clicked()), this, SLOT(saveFile()));
     connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(exit()));
-    connect(ui->menuEffects, SIGNAL(triggered()), this, SLOT(openViewEffects()));
 
     connect(ui->resizeButton, SIGNAL(clicked()), this, SLOT(resize()));
     connect(ui->resizeSlider, SIGNAL(sliderReleased()), this, SLOT(zoom()));
@@ -26,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->mirrorButton, SIGNAL(clicked()), this, SLOT(mirror()));
     connect(ui->reflectionButton, SIGNAL(clicked()), this, SLOT(reflection()));
     connect(ui->xRayButton, SIGNAL(clicked()), this, SLOT(xray()));
+    connect(ui->greyscaleButton, SIGNAL(clicked()), this, SLOT(grayScale()));
+    connect(ui->sepiaButton, SIGNAL(clicked()), this, SLOT(sepia()));
 }
 
 MainWindow::~MainWindow()
@@ -456,6 +457,40 @@ void MainWindow::xray(void) {
             QRgb xraypixel = qRgb(qRed(qrgb) ^ 255, qGreen(qrgb) ^ 255, qBlue(qrgb) ^ 255);
 
             targetImg->setPixel(i, j, xraypixel);
+        }
+    }
+
+    ui->imgResult->setGeometry(ui->imgResult->x(), ui->imgResult->y(), targetImg->width(), targetImg->height());
+    ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
+}
+
+
+void MainWindow::sepia(void) {
+
+    qDebug() << "sepia.";
+    int target_width = selectedImage->width();
+    int target_height = selectedImage->height();
+    int red, green, blue;
+
+    targetImg = new QImage(target_width, target_height, selectedImage->format());
+
+
+    for (int i = 0; i < target_width; i++) {
+        for (int j = 0; j < target_height; j++) {
+
+            QRgb qrgb = selectedImage->pixel(i, j);
+
+            red = (0.393*qRed(qrgb) + 0.769*qGreen(qrgb) + 0.189*qBlue(qrgb));
+            green = (0.349*qRed(qrgb) + 0.686*qGreen(qrgb) + 0.168*qBlue(qrgb));
+            blue = (0.272*qRed(qrgb) + 0.534*qGreen(qrgb) + 0.131*qBlue(qrgb));
+
+            if (red>0xFF) red=0xFF;
+            if (green>0xFF) green=0xFF;
+            if (blue>0xFF) blue=0xFF;
+
+            QRgb sepiaPixel = qRgb(red, green, blue);
+
+            targetImg->setPixel(i, j, sepiaPixel);
         }
     }
 
