@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Thu Sep 1 20:16:33 2011
+** Created: Thu Sep 1 22:19:14 2011
 **      by: Qt User Interface Compiler version 4.7.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -24,6 +24,7 @@
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
 #include <QtGui/QPushButton>
+#include <QtGui/QScrollArea>
 #include <QtGui/QSlider>
 #include <QtGui/QWidget>
 
@@ -69,6 +70,9 @@ public:
     QLineEdit *labelEndYposition;
     QPushButton *cropButton;
     QComboBox *boxResize;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QLabel *labelResult;
     QMenuBar *menuBar;
     QMenu *menuFile;
 
@@ -116,20 +120,17 @@ public:
         line->setFrameShadow(QFrame::Sunken);
         resizeButton = new QPushButton(centralWidget);
         resizeButton->setObjectName(QString::fromUtf8("resizeButton"));
-        resizeButton->setGeometry(QRect(145, 345, 71, 27));
+        resizeButton->setGeometry(QRect(145, 340, 71, 27));
         imgResult = new QLabel(centralWidget);
         imgResult->setObjectName(QString::fromUtf8("imgResult"));
-        imgResult->setGeometry(QRect(249, 30, 530, 521));
-        QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(imgResult->sizePolicy().hasHeightForWidth());
-        imgResult->setSizePolicy(sizePolicy3);
+        imgResult->setGeometry(QRect(253, 30, 530, 530));
+        sizePolicy.setHeightForWidth(imgResult->sizePolicy().hasHeightForWidth());
+        imgResult->setSizePolicy(sizePolicy);
         imgResult->setSizeIncrement(QSize(0, 0));
         imgResult->setAutoFillBackground(false);
         imgResult->setTextFormat(Qt::AutoText);
         imgResult->setScaledContents(false);
-        imgResult->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        imgResult->setAlignment(Qt::AlignCenter);
         rightButton = new QPushButton(centralWidget);
         rightButton->setObjectName(QString::fromUtf8("rightButton"));
         rightButton->setGeometry(QRect(60, 495, 34, 34));
@@ -181,10 +182,10 @@ public:
         labelHeight->setGeometry(QRect(170, 302, 41, 16));
         applyButton = new QPushButton(centralWidget);
         applyButton->setObjectName(QString::fromUtf8("applyButton"));
-        applyButton->setGeometry(QRect(16, 538, 121, 27));
+        applyButton->setGeometry(QRect(15, 538, 121, 27));
         boxAspectRatio = new QCheckBox(centralWidget);
         boxAspectRatio->setObjectName(QString::fromUtf8("boxAspectRatio"));
-        boxAspectRatio->setGeometry(QRect(19, 352, 111, 20));
+        boxAspectRatio->setGeometry(QRect(19, 347, 111, 20));
         resizeSlider = new QSlider(centralWidget);
         resizeSlider->setObjectName(QString::fromUtf8("resizeSlider"));
         resizeSlider->setGeometry(QRect(20, 237, 190, 22));
@@ -241,12 +242,61 @@ public:
         cropButton->setGeometry(QRect(155, 450, 61, 27));
         boxResize = new QComboBox(centralWidget);
         boxResize->setObjectName(QString::fromUtf8("boxResize"));
-        boxResize->setGeometry(QRect(15, 320, 161, 26));
+        boxResize->setGeometry(QRect(15, 318, 161, 26));
         boxResize->setMaxVisibleItems(3);
         boxResize->setMaxCount(3);
         boxResize->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLength);
         boxResize->setMinimumContentsLength(3);
+        scrollArea = new QScrollArea(centralWidget);
+        scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
+        scrollArea->setGeometry(QRect(253, 30, 530, 530));
+        scrollArea->setLineWidth(1);
+        scrollArea->setWidgetResizable(true);
+        scrollArea->setAlignment(Qt::AlignCenter);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 528, 528));
+        scrollArea->setWidget(scrollAreaWidgetContents);
+        labelResult = new QLabel(centralWidget);
+        labelResult->setObjectName(QString::fromUtf8("labelResult"));
+        labelResult->setGeometry(QRect(253, 10, 111, 16));
         MainWindow->setCentralWidget(centralWidget);
+        scrollArea->raise();
+        imgSelected->raise();
+        line->raise();
+        resizeButton->raise();
+        imgResult->raise();
+        rightButton->raise();
+        leftButton->raise();
+        labelRotate->raise();
+        line_2->raise();
+        saveButton->raise();
+        labelSample->raise();
+        labelZoom->raise();
+        line_3->raise();
+        inputWidth->raise();
+        inputHeight->raise();
+        labelWidth->raise();
+        labelHeight->raise();
+        applyButton->raise();
+        boxAspectRatio->raise();
+        resizeSlider->raise();
+        label->raise();
+        labelCrop->raise();
+        line_4->raise();
+        labelResize->raise();
+        line_5->raise();
+        labelStartX->raise();
+        labelStartY->raise();
+        labelEndX->raise();
+        labelEndY->raise();
+        labelStartXposition->raise();
+        labelStartYposition->raise();
+        labelEndXposition->raise();
+        labelEndYposition->raise();
+        cropButton->raise();
+        boxResize->raise();
+        labelResult->raise();
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 800, 22));
@@ -298,6 +348,7 @@ public:
          << QApplication::translate("MainWindow", "Bilinear", 0, QApplication::UnicodeUTF8)
          << QApplication::translate("MainWindow", "Bicubic", 0, QApplication::UnicodeUTF8)
         );
+        labelResult->setText(QApplication::translate("MainWindow", "Result", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

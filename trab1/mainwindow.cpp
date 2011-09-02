@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "QFileDialog"
 #include "QDebug"
+#include <QScrollArea>
 #include "math.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -10,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     selectedImage = new QImage();
+
     connect(ui->actionOpenFile, SIGNAL(triggered()), this, SLOT(openFile()));
     connect(ui->applyButton, SIGNAL(clicked()), this, SLOT(saveChanges()));
     connect(ui->saveButton, SIGNAL(clicked()), this, SLOT(saveFile()));
@@ -48,6 +50,9 @@ void MainWindow::openFile(void)
 
     ui->imgSelected->setPixmap(QPixmap::fromImage(*selectedImage));
     ui->imgResult->setPixmap(QPixmap::fromImage(*selectedImage));
+
+    ui->scrollArea->setBackgroundRole(QPalette::Background);
+    ui->scrollArea->setWidget(ui->imgResult);
 
     ui->imgResult->setGeometry(ui->imgResult->x(), ui->imgResult->y(), selectedImage->width(), selectedImage->height());
 }
@@ -332,5 +337,4 @@ void MainWindow::rotateLeft() {
     ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
 
 }
-
 
