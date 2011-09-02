@@ -191,23 +191,31 @@ void MainWindow::bilinearResize(int target_width, int target_height)
     double y_ratio = selectedImage->height() / (double)target_height;
     double x_source, y_source, red, green, blue;
 
+    QRgb center = qRgb(0, 0, 0);
+    QRgb left = qRgb(0, 0, 0);
+    QRgb right = qRgb(0, 0, 0);
+    QRgb upper = qRgb(0, 0, 0);
+    QRgb down = qRgb(0, 0, 0);
+
+    QRgb average = qRgb(0, 0, 0);
+
     for (int i = 0; i < target_width; i++) {
         for (int j = 0; j < target_height; j++) {
 
             x_source = floor(i * x_ratio);
             y_source = floor(j * y_ratio);
 
-            QRgb center = selectedImage->pixel(x_source, y_source);
-            QRgb left = selectedImage->pixel(x_source-1, y_source);
-            QRgb right = selectedImage->pixel(x_source+1, y_source);
-            QRgb upper = selectedImage->pixel(x_source, y_source-1);
-            QRgb down = selectedImage->pixel(x_source, y_source+1);
+            center = selectedImage->pixel(x_source, y_source);
+            left = selectedImage->pixel(x_source-1, y_source);
+            right = selectedImage->pixel(x_source+1, y_source);
+            upper = selectedImage->pixel(x_source, y_source-1);
+            down = selectedImage->pixel(x_source, y_source+1);
 
             red = ((qRed(left) + qRed(right) + qRed(upper) + qRed(down))/4.0 + qRed(center)*2)/3.0;
             green = ((qGreen(left) + qGreen(right) + qGreen(upper) + qGreen(down))/4.0 + qGreen(center)*2)/3.0;
             blue = ((qBlue(left) + qBlue(right) + qBlue(upper) + qBlue(down))/4.0 + qBlue(center)*2)/3.0;
 
-            QRgb average = qRgb(red, green, blue);
+            average = qRgb(red, green, blue);
 
             targetImg->setPixel(i, j, average);
         }
@@ -226,23 +234,36 @@ void MainWindow::bicubicResize(int target_width, int target_height)
     double y_ratio = selectedImage->height() / (double)target_height;
     double x_source, y_source, red, green, blue;
 
+    QRgb leftUpper = qRgb(0, 0, 0);
+    QRgb upper = qRgb(0, 0, 0);
+    QRgb rightupper = qRgb(0, 0, 0);
+    QRgb left = qRgb(0, 0, 0);
+
+    QRgb center = qRgb(0, 0, 0);
+
+    QRgb right = qRgb(0, 0, 0);
+    QRgb leftDown = qRgb(0, 0, 0);
+    QRgb down = qRgb(0, 0, 0);
+    QRgb rightDown = qRgb(0, 0, 0);
+    QRgb average = qRgb(0, 0, 0);
+
     for (int i = 0; i < target_width; i++) {
         for (int j = 0; j < target_height; j++) {
 
             x_source = floor(i * x_ratio);
             y_source = floor(j * y_ratio);
 
-            QRgb leftUpper = selectedImage->pixel(x_source-1, y_source-1);
-            QRgb upper = selectedImage->pixel(x_source, y_source-1);
-            QRgb rightupper = selectedImage->pixel(x_source+1, y_source-1);
-            QRgb left = selectedImage->pixel(x_source-1, y_source);
+            leftUpper = selectedImage->pixel(x_source-1, y_source-1);
+            upper = selectedImage->pixel(x_source, y_source-1);
+            rightupper = selectedImage->pixel(x_source+1, y_source-1);
+            left = selectedImage->pixel(x_source-1, y_source);
 
-            QRgb center = selectedImage->pixel(x_source, y_source);
+            center = selectedImage->pixel(x_source, y_source);
 
-            QRgb right = selectedImage->pixel(x_source+1, y_source);
-            QRgb leftDown = selectedImage->pixel(x_source-1, y_source+1);
-            QRgb down = selectedImage->pixel(x_source, y_source+1);
-            QRgb rightDown = selectedImage->pixel(x_source+1, y_source+1);
+            right = selectedImage->pixel(x_source+1, y_source);
+            leftDown = selectedImage->pixel(x_source-1, y_source+1);
+            down = selectedImage->pixel(x_source, y_source+1);
+            rightDown = selectedImage->pixel(x_source+1, y_source+1);
 
             red = ((qRed(leftUpper) + qRed(upper) + qRed(rightupper) + qRed(left) +
                     qRed(right) + qRed(leftDown) + qRed(down) + qRed(rightDown))/8.0 + qRed(center))/2.0;
@@ -253,7 +274,7 @@ void MainWindow::bicubicResize(int target_width, int target_height)
             blue = ((qBlue(leftUpper) + qBlue(upper) + qBlue(rightupper) + qBlue(left) +
                      qBlue(right) + qBlue(leftDown) + qBlue(down) + qBlue(rightDown))/8.0 + qBlue(center))/2.0;
 
-            QRgb average = qRgb(red, green, blue);
+            average = qRgb(red, green, blue);
 
             targetImg->setPixel(i, j, average);
         }
