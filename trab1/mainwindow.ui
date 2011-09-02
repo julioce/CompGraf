@@ -86,7 +86,7 @@
     <property name="geometry">
      <rect>
       <x>145</x>
-      <y>340</y>
+      <y>345</y>
       <width>71</width>
       <height>27</height>
      </rect>
@@ -186,12 +186,12 @@
      <rect>
       <x>20</x>
       <y>472</y>
-      <width>60</width>
+      <width>101</width>
       <height>17</height>
      </rect>
     </property>
     <property name="text">
-     <string>Rotate</string>
+     <string>Rotate &amp; Mirror</string>
     </property>
    </widget>
    <widget class="Line" name="line_2">
@@ -322,7 +322,7 @@
     <property name="geometry">
      <rect>
       <x>19</x>
-      <y>347</y>
+      <y>352</y>
       <width>111</width>
       <height>20</height>
      </rect>
@@ -608,42 +608,52 @@
      <string>Result</string>
     </property>
    </widget>
-   <zorder>scrollArea</zorder>
-   <zorder>imgSelected</zorder>
-   <zorder>line</zorder>
-   <zorder>resizeButton</zorder>
-   <zorder>imgResult</zorder>
-   <zorder>rightButton</zorder>
-   <zorder>leftButton</zorder>
-   <zorder>labelRotate</zorder>
-   <zorder>line_2</zorder>
-   <zorder>saveButton</zorder>
-   <zorder>labelSample</zorder>
-   <zorder>labelZoom</zorder>
-   <zorder>line_3</zorder>
-   <zorder>inputWidth</zorder>
-   <zorder>inputHeight</zorder>
-   <zorder>labelWidth</zorder>
-   <zorder>labelHeight</zorder>
-   <zorder>applyButton</zorder>
-   <zorder>boxAspectRatio</zorder>
-   <zorder>resizeSlider</zorder>
-   <zorder>label</zorder>
-   <zorder>labelCrop</zorder>
-   <zorder>line_4</zorder>
-   <zorder>labelResize</zorder>
-   <zorder>line_5</zorder>
-   <zorder>labelStartX</zorder>
-   <zorder>labelStartY</zorder>
-   <zorder>labelEndX</zorder>
-   <zorder>labelEndY</zorder>
-   <zorder>labelStartXposition</zorder>
-   <zorder>labelStartYposition</zorder>
-   <zorder>labelEndXposition</zorder>
-   <zorder>labelEndYposition</zorder>
-   <zorder>cropButton</zorder>
-   <zorder>boxResize</zorder>
-   <zorder>labelResult</zorder>
+   <widget class="QPushButton" name="mirrorButton">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>495</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="Resources.qrc">
+      <normaloff>:/Images/mirror.jpg</normaloff>:/Images/mirror.jpg</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="reflectionButton">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>495</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="Resources.qrc">
+      <normaloff>:/Images/reflection.jpg</normaloff>:/Images/reflection.jpg</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -651,7 +661,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

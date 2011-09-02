@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Thu Sep 1 22:19:14 2011
-**      by: Qt User Interface Compiler version 4.7.3
+** Created: Fri Sep 2 11:30:04 2011
+**      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -73,6 +73,8 @@ public:
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QLabel *labelResult;
+    QPushButton *mirrorButton;
+    QPushButton *reflectionButton;
     QMenuBar *menuBar;
     QMenu *menuFile;
 
@@ -120,7 +122,7 @@ public:
         line->setFrameShadow(QFrame::Sunken);
         resizeButton = new QPushButton(centralWidget);
         resizeButton->setObjectName(QString::fromUtf8("resizeButton"));
-        resizeButton->setGeometry(QRect(145, 340, 71, 27));
+        resizeButton->setGeometry(QRect(145, 345, 71, 27));
         imgResult = new QLabel(centralWidget);
         imgResult->setObjectName(QString::fromUtf8("imgResult"));
         imgResult->setGeometry(QRect(253, 30, 530, 530));
@@ -148,7 +150,7 @@ public:
         leftButton->setIconSize(QSize(32, 32));
         labelRotate = new QLabel(centralWidget);
         labelRotate->setObjectName(QString::fromUtf8("labelRotate"));
-        labelRotate->setGeometry(QRect(20, 472, 60, 17));
+        labelRotate->setGeometry(QRect(20, 472, 101, 17));
         line_2 = new QFrame(centralWidget);
         line_2->setObjectName(QString::fromUtf8("line_2"));
         line_2->setGeometry(QRect(20, 480, 190, 20));
@@ -185,7 +187,7 @@ public:
         applyButton->setGeometry(QRect(15, 538, 121, 27));
         boxAspectRatio = new QCheckBox(centralWidget);
         boxAspectRatio->setObjectName(QString::fromUtf8("boxAspectRatio"));
-        boxAspectRatio->setGeometry(QRect(19, 347, 111, 20));
+        boxAspectRatio->setGeometry(QRect(19, 352, 111, 20));
         resizeSlider = new QSlider(centralWidget);
         resizeSlider->setObjectName(QString::fromUtf8("resizeSlider"));
         resizeSlider->setGeometry(QRect(20, 237, 190, 22));
@@ -260,46 +262,24 @@ public:
         labelResult = new QLabel(centralWidget);
         labelResult->setObjectName(QString::fromUtf8("labelResult"));
         labelResult->setGeometry(QRect(253, 10, 111, 16));
+        mirrorButton = new QPushButton(centralWidget);
+        mirrorButton->setObjectName(QString::fromUtf8("mirrorButton"));
+        mirrorButton->setGeometry(QRect(100, 495, 34, 34));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/Images/mirror.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+        mirrorButton->setIcon(icon2);
+        mirrorButton->setIconSize(QSize(24, 24));
+        reflectionButton = new QPushButton(centralWidget);
+        reflectionButton->setObjectName(QString::fromUtf8("reflectionButton"));
+        reflectionButton->setGeometry(QRect(140, 495, 34, 34));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/Images/reflection.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+        reflectionButton->setIcon(icon3);
+        reflectionButton->setIconSize(QSize(24, 24));
         MainWindow->setCentralWidget(centralWidget);
-        scrollArea->raise();
-        imgSelected->raise();
-        line->raise();
-        resizeButton->raise();
-        imgResult->raise();
-        rightButton->raise();
-        leftButton->raise();
-        labelRotate->raise();
-        line_2->raise();
-        saveButton->raise();
-        labelSample->raise();
-        labelZoom->raise();
-        line_3->raise();
-        inputWidth->raise();
-        inputHeight->raise();
-        labelWidth->raise();
-        labelHeight->raise();
-        applyButton->raise();
-        boxAspectRatio->raise();
-        resizeSlider->raise();
-        label->raise();
-        labelCrop->raise();
-        line_4->raise();
-        labelResize->raise();
-        line_5->raise();
-        labelStartX->raise();
-        labelStartY->raise();
-        labelEndX->raise();
-        labelEndY->raise();
-        labelStartXposition->raise();
-        labelStartYposition->raise();
-        labelEndXposition->raise();
-        labelEndYposition->raise();
-        cropButton->raise();
-        boxResize->raise();
-        labelResult->raise();
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 800, 22));
+        menuBar->setGeometry(QRect(0, 0, 800, 25));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         MainWindow->setMenuBar(menuBar);
@@ -326,7 +306,7 @@ public:
         imgResult->setText(QString());
         rightButton->setText(QString());
         leftButton->setText(QString());
-        labelRotate->setText(QApplication::translate("MainWindow", "Rotate", 0, QApplication::UnicodeUTF8));
+        labelRotate->setText(QApplication::translate("MainWindow", "Rotate & Mirror", 0, QApplication::UnicodeUTF8));
         saveButton->setText(QApplication::translate("MainWindow", "Save", 0, QApplication::UnicodeUTF8));
         labelSample->setText(QApplication::translate("MainWindow", "Original Sample", 0, QApplication::UnicodeUTF8));
         labelZoom->setText(QApplication::translate("MainWindow", "Zoom", 0, QApplication::UnicodeUTF8));
@@ -349,6 +329,8 @@ public:
          << QApplication::translate("MainWindow", "Bicubic", 0, QApplication::UnicodeUTF8)
         );
         labelResult->setText(QApplication::translate("MainWindow", "Result", 0, QApplication::UnicodeUTF8));
+        mirrorButton->setText(QString());
+        reflectionButton->setText(QString());
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

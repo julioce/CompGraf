@@ -22,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->cropButton, SIGNAL(clicked()), this, SLOT(crop()));
     connect(ui->rightButton, SIGNAL(clicked()), this, SLOT(rotateRight()));
     connect(ui->leftButton, SIGNAL(clicked()), this, SLOT(rotateLeft()));
+    connect(ui->mirrorButton, SIGNAL(clicked()), this, SLOT(mirror()));
+    connect(ui->reflectionButton, SIGNAL(clicked()), this, SLOT(reflection()));
 }
 
 MainWindow::~MainWindow()
@@ -336,5 +338,53 @@ void MainWindow::rotateLeft() {
     ui->imgResult->setGeometry(ui->imgResult->x(), ui->imgResult->y(), targetImg->width(), targetImg->height());
     ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
 
+}
+
+void MainWindow::mirror(void) {
+
+    qDebug() << "Mirror.";
+    int target_width = selectedImage->width();
+    int target_height = selectedImage->height();
+    targetImg = new QImage(target_width, target_height, selectedImage->format());
+
+
+    for (int i = 0; i < target_width/2; i++) {
+        for (int j = 0; j < target_height; j++) {
+
+            QRgb qrgb = selectedImage->pixel(i, j);
+            targetImg->setPixel(i, j, qrgb);
+        }
+    }
+
+    for (int i = target_width/2; i < target_width; i++) {
+        for (int j = 0; j < target_height; j++) {
+
+            QRgb qrgb = selectedImage->pixel(target_width - i, j);
+            targetImg->setPixel(i, j, qrgb);
+        }
+    }
+
+    ui->imgResult->setGeometry(ui->imgResult->x(), ui->imgResult->y(), targetImg->width(), targetImg->height());
+    ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
+}
+
+void MainWindow::reflection(void) {
+
+    qDebug() << "Mirror.";
+    int target_width = selectedImage->width();
+    int target_height = selectedImage->height();
+    targetImg = new QImage(target_width, target_height, selectedImage->format());
+
+
+    for (int i = 0; i < target_width; i++) {
+        for (int j = 0; j < target_height; j++) {
+
+            QRgb qrgb = selectedImage->pixel(target_width - i, j);
+            targetImg->setPixel(i, j, qrgb);
+        }
+    }
+
+    ui->imgResult->setGeometry(ui->imgResult->x(), ui->imgResult->y(), targetImg->width(), targetImg->height());
+    ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
 }
 

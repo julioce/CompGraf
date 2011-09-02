@@ -27,6 +27,8 @@ public slots:
    void crop(void);
    void rotateRight(void);
    void rotateLeft(void);
+   void mirror(void);
+   void reflection(void);
 
 private:
     Ui::MainWindow *ui;
@@ -35,7 +37,6 @@ private:
     void bilinearResize(int w2, int h2);
     void bicubicResize(int w2, int h2);
     void simpleCrop(int x1, int y1, int x2, int y2);
-
 };
 
 #endif // MAINWINDOW_H
