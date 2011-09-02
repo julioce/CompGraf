@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Fri Sep 2 11:48:45 2011
+** Created: Fri Sep 2 14:04:45 2011
 **      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -75,6 +75,7 @@ public:
     QLabel *labelResult;
     QPushButton *mirrorButton;
     QPushButton *reflectionButton;
+    QPushButton *xRayButton;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuEffects;
@@ -151,7 +152,7 @@ public:
         leftButton->setIconSize(QSize(32, 32));
         labelRotate = new QLabel(centralWidget);
         labelRotate->setObjectName(QString::fromUtf8("labelRotate"));
-        labelRotate->setGeometry(QRect(20, 472, 101, 17));
+        labelRotate->setGeometry(QRect(20, 472, 121, 17));
         line_2 = new QFrame(centralWidget);
         line_2->setObjectName(QString::fromUtf8("line_2"));
         line_2->setGeometry(QRect(20, 480, 190, 20));
@@ -277,6 +278,13 @@ public:
         icon3.addFile(QString::fromUtf8(":/Images/reflection.jpg"), QSize(), QIcon::Normal, QIcon::Off);
         reflectionButton->setIcon(icon3);
         reflectionButton->setIconSize(QSize(24, 24));
+        xRayButton = new QPushButton(centralWidget);
+        xRayButton->setObjectName(QString::fromUtf8("xRayButton"));
+        xRayButton->setGeometry(QRect(180, 495, 34, 34));
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/Images/xRay.png"), QSize(), QIcon::Normal, QIcon::Off);
+        xRayButton->setIcon(icon4);
+        xRayButton->setIconSize(QSize(28, 28));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
@@ -310,7 +318,7 @@ public:
         imgResult->setText(QString());
         rightButton->setText(QString());
         leftButton->setText(QString());
-        labelRotate->setText(QApplication::translate("MainWindow", "Rotate & Mirror", 0, QApplication::UnicodeUTF8));
+        labelRotate->setText(QApplication::translate("MainWindow", "Rotation & Effects", 0, QApplication::UnicodeUTF8));
         saveButton->setText(QApplication::translate("MainWindow", "Save", 0, QApplication::UnicodeUTF8));
         labelSample->setText(QApplication::translate("MainWindow", "Original Sample", 0, QApplication::UnicodeUTF8));
         labelZoom->setText(QApplication::translate("MainWindow", "Zoom", 0, QApplication::UnicodeUTF8));
@@ -335,6 +343,7 @@ public:
         labelResult->setText(QApplication::translate("MainWindow", "Result", 0, QApplication::UnicodeUTF8));
         mirrorButton->setText(QString());
         reflectionButton->setText(QString());
+        xRayButton->setText(QString());
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
         menuEffects->setTitle(QApplication::translate("MainWindow", "Effects", 0, QApplication::UnicodeUTF8));
     } // retranslateUi

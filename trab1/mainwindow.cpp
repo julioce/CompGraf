@@ -25,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->leftButton, SIGNAL(clicked()), this, SLOT(rotateLeft()));
     connect(ui->mirrorButton, SIGNAL(clicked()), this, SLOT(mirror()));
     connect(ui->reflectionButton, SIGNAL(clicked()), this, SLOT(reflection()));
+    connect(ui->xRayButton, SIGNAL(clicked()), this, SLOT(xray()));
 }
 
 MainWindow::~MainWindow()

@@ -4,5 +4,6 @@
         <file>Undo.png</file>
         <file>mirror.jpg</file>
         <file>reflection.jpg</file>
+        <file>xRay.png</file>
     </qresource>
 </RCC>
