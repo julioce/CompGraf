@@ -431,12 +431,33 @@ void MainWindow::grayScale(void) {
             QRgb qrgb = selectedImage->pixel(i, j);
             media = (qBlue(qrgb) + qGreen(qrgb) + qRed(qrgb)) / 3;
             QRgb grayPixel = qRgb(media, media, media);
-            targetImg->setPixel(i, j, qrgb);
+            targetImg->setPixel(i, j, grayPixel);
         }
     }
 
     ui->imgResult->setGeometry(ui->imgResult->x(), ui->imgResult->y(), targetImg->width(), targetImg->height());
     ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
-
 }
 
+void MainWindow::xray(void) {
+
+    qDebug() << "xray.";
+    int target_width = selectedImage->width();
+    int target_height = selectedImage->height();
+
+    targetImg = new QImage(target_width, target_height, selectedImage->format());
+
+
+    for (int i = 0; i < target_width; i++) {
+        for (int j = 0; j < target_height; j++) {
+
+            QRgb qrgb = selectedImage->pixel(i, j);            
+            QRgb xraypixel = qRgb(qRed(qrgb) ^ 255, qGreen(qrgb) ^ 255, qBlue(qrgb) ^ 255);
+
+            targetImg->setPixel(i, j, xraypixel);
+        }
+    }
+
+    ui->imgResult->setGeometry(ui->imgResult->x(), ui->imgResult->y(), targetImg->width(), targetImg->height());
+    ui->imgResult->setPixmap(QPixmap::fromImage(*targetImg));
+}

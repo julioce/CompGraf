@@ -31,6 +31,7 @@ public slots:
    void mirror(void);
    void reflection(void);
    void grayScale(void);
+   void xray(void);
 
 private:
     Ui::MainWindow *ui;
