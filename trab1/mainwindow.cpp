@@ -51,6 +51,7 @@ void MainWindow::changeEvent(QEvent *e)
 
 void MainWindow::effects(void) {
     qDebug() << "Chamou a janela effects";
+    targetImg = selectedImage;
     SecundaryWindow *s = new SecundaryWindow(ui->centralWidget, ui, selectedImage, targetImg);
     s->show();
 }

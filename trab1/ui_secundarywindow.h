@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'secundarywindow.ui'
 **
-** Created: Sun Sep 4 13:46:35 2011
+** Created: Sun Sep 4 16:05:39 2011
 **      by: Qt User Interface Compiler version 4.7.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -29,9 +29,9 @@ public:
     QSlider *gSlider;
     QSlider *bSlider;
     QLabel *RGBlabel;
-    QLabel *hiddenPreview;
-    QPushButton *pushButton;
     QPushButton *applyChanges;
+    QLabel *labelLess;
+    QLabel *labelMore;
 
     void setupUi(QWidget *SecundaryWindow)
     {
@@ -41,31 +41,39 @@ public:
         SecundaryWindow->resize(349, 323);
         rSlider = new QSlider(SecundaryWindow);
         rSlider->setObjectName(QString::fromUtf8("rSlider"));
-        rSlider->setGeometry(QRect(10, 30, 22, 160));
+        rSlider->setGeometry(QRect(23, 30, 22, 160));
         rSlider->setMaximum(255);
+        rSlider->setPageStep(1);
+        rSlider->setValue(255);
         rSlider->setOrientation(Qt::Vertical);
         gSlider = new QSlider(SecundaryWindow);
         gSlider->setObjectName(QString::fromUtf8("gSlider"));
-        gSlider->setGeometry(QRect(40, 30, 22, 160));
+        gSlider->setGeometry(QRect(53, 30, 22, 160));
         gSlider->setMaximum(255);
+        gSlider->setPageStep(1);
+        gSlider->setValue(255);
         gSlider->setOrientation(Qt::Vertical);
         bSlider = new QSlider(SecundaryWindow);
         bSlider->setObjectName(QString::fromUtf8("bSlider"));
-        bSlider->setGeometry(QRect(70, 30, 22, 160));
+        bSlider->setGeometry(QRect(83, 30, 22, 160));
         bSlider->setMaximum(255);
+        bSlider->setPageStep(1);
+        bSlider->setValue(255);
         bSlider->setOrientation(Qt::Vertical);
         RGBlabel = new QLabel(SecundaryWindow);
         RGBlabel->setObjectName(QString::fromUtf8("RGBlabel"));
-        RGBlabel->setGeometry(QRect(17, 10, 81, 16));
-        hiddenPreview = new QLabel(SecundaryWindow);
-        hiddenPreview->setObjectName(QString::fromUtf8("hiddenPreview"));
-        hiddenPreview->setGeometry(QRect(330, 300, 0, 0));
-        pushButton = new QPushButton(SecundaryWindow);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(80, 220, 114, 32));
+        RGBlabel->setGeometry(QRect(30, 10, 81, 16));
         applyChanges = new QPushButton(SecundaryWindow);
         applyChanges->setObjectName(QString::fromUtf8("applyChanges"));
-        applyChanges->setGeometry(QRect(10, 270, 121, 32));
+        applyChanges->setGeometry(QRect(10, 280, 121, 32));
+        labelLess = new QLabel(SecundaryWindow);
+        labelLess->setObjectName(QString::fromUtf8("labelLess"));
+        labelLess->setGeometry(QRect(10, 30, 16, 16));
+        labelLess->setAlignment(Qt::AlignCenter);
+        labelMore = new QLabel(SecundaryWindow);
+        labelMore->setObjectName(QString::fromUtf8("labelMore"));
+        labelMore->setGeometry(QRect(10, 175, 16, 16));
+        labelMore->setAlignment(Qt::AlignCenter);
 
         retranslateUi(SecundaryWindow);
 
@@ -76,9 +84,9 @@ public:
     {
         SecundaryWindow->setWindowTitle(QApplication::translate("SecundaryWindow", "Form", 0, QApplication::UnicodeUTF8));
         RGBlabel->setText(QApplication::translate("SecundaryWindow", "R     G     B", 0, QApplication::UnicodeUTF8));
-        hiddenPreview->setText(QString());
-        pushButton->setText(QApplication::translate("SecundaryWindow", "PushButton", 0, QApplication::UnicodeUTF8));
         applyChanges->setText(QApplication::translate("SecundaryWindow", "Apply Changes", 0, QApplication::UnicodeUTF8));
+        labelLess->setText(QApplication::translate("SecundaryWindow", "-", 0, QApplication::UnicodeUTF8));
+        labelMore->setText(QApplication::translate("SecundaryWindow", "+", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

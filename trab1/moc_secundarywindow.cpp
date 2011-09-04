@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'secundarywindow.h'
 **
-** Created: Sun Sep 4 13:47:33 2011
+** Created: Sun Sep 4 16:05:43 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_SecundaryWindow[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -32,14 +32,16 @@ static const uint qt_meta_data_SecundaryWindow[] = {
 
  // slots: signature, parameters, type, tag, flags
       17,   16,   16,   16, 0x0a,
-      29,   16,   16,   16, 0x0a,
+      32,   16,   16,   16, 0x0a,
+      42,   16,   16,   16, 0x0a,
+      52,   16,   16,   16, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_SecundaryWindow[] = {
-    "SecundaryWindow\0\0changeRGB()\0"
-    "applyChanges()\0"
+    "SecundaryWindow\0\0applyChanges()\0"
+    "changeR()\0changeG()\0changeB()\0"
 };
 
 const QMetaObject SecundaryWindow::staticMetaObject = {
@@ -71,11 +73,13 @@ int SecundaryWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: changeRGB(); break;
-        case 1: applyChanges(); break;
+        case 0: applyChanges(); break;
+        case 1: changeR(); break;
+        case 2: changeG(); break;
+        case 3: changeB(); break;
         default: ;
         }
-        _id -= 2;
+        _id -= 4;
     }
     return _id;
 }

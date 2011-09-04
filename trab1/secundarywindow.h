@@ -24,9 +24,10 @@ protected:
 signals:
 
 public slots:
-    void changeRGB(void);
     void applyChanges(void);
-
+    void changeR(void);
+    void changeG(void);
+    void changeB(void);
 private:
 
 };
