@@ -12,31 +12,31 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    Ui::MainWindow *ui;
+    QImage *selectedImage, *targetImg;
 
 protected:
     void changeEvent(QEvent *e);
 
 public slots:
-   void openFile(void);
-   void saveChanges(void);
-   void saveFile(void);
-   void exit(void);
-   void openViewEffects(void);
+    void openFile(void);
+    void saveChanges(void);
+    void saveFile(void);
+    void exit(void);
+    void effects(void);
 
-   void zoom(void);
-   void resize(void);
-   void crop(void);
-   void rotateRight(void);
-   void rotateLeft(void);
-   void mirror(void);
-   void reflection(void);
-   void grayScale(void);
-   void xray(void);
-   void sepia(void);
+    void zoom(void);
+    void resize(void);
+    void crop(void);
+    void rotateRight(void);
+    void rotateLeft(void);
+    void mirror(void);
+    void reflection(void);
+    void grayScale(void);
+    void xray(void);
+    void sepia(void);
 
 private:
-    Ui::MainWindow *ui;
-    QImage *selectedImage, *targetImg;
     void simpleResize(int w2, int h2);
     void bilinearResize(int w2, int h2);
     void bicubicResize(int w2, int h2);

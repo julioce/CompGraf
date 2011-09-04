@@ -116,6 +116,9 @@
       <height>0</height>
      </size>
     </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
     <property name="autoFillBackground">
      <bool>false</bool>
     </property>
@@ -730,7 +733,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -740,7 +743,14 @@
     <addaction name="actionOpenFile"/>
     <addaction name="actionExit"/>
    </widget>
+   <widget class="QMenu" name="menuExtras">
+    <property name="title">
+     <string>Extras</string>
+    </property>
+    <addaction name="actionEffects"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuExtras"/>
   </widget>
   <action name="actionOpenFile">
    <property name="text">
@@ -750,6 +760,11 @@
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionEffects">
+   <property name="text">
+    <string>Effects</string>
    </property>
   </action>
  </widget>

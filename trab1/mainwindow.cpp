@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "secundarywindow.h"
 #include "ui_mainwindow.h"
 #include "QFileDialog"
 #include "QDebug"
@@ -11,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     selectedImage = new QImage();
+
+    connect(ui->actionEffects, SIGNAL(triggered()), this, SLOT(effects()));
 
     connect(ui->actionOpenFile, SIGNAL(triggered()), this, SLOT(openFile()));
     connect(ui->applyButton, SIGNAL(clicked()), this, SLOT(saveChanges()));
@@ -46,10 +49,9 @@ void MainWindow::changeEvent(QEvent *e)
     }
 }
 
-void MainWindow::openViewEffects(void) {
-
-
-
+void MainWindow::effects(void) {
+    SecundaryWindow *s = new SecundaryWindow;
+    s->show();
 }
 
 void MainWindow::openFile(void)
@@ -213,9 +215,9 @@ void MainWindow::bilinearResize(int target_width, int target_height)
             upper = selectedImage->pixel(x_source, y_source-1);
             down = selectedImage->pixel(x_source, y_source+1);
 
-            red = ((qRed(left) + qRed(right) + qRed(upper) + qRed(down))/4.0 + qRed(center)*2)/3.0;
-            green = ((qGreen(left) + qGreen(right) + qGreen(upper) + qGreen(down))/4.0 + qGreen(center)*2)/3.0;
-            blue = ((qBlue(left) + qBlue(right) + qBlue(upper) + qBlue(down))/4.0 + qBlue(center)*2)/3.0;
+            red = (qRed(left) + qRed(right) + qRed(upper) + qRed(down))/4.0;
+            green = (qGreen(left) + qGreen(right) + qGreen(upper) + qGreen(down))/4.0;
+            blue = (qBlue(left) + qBlue(right) + qBlue(upper) + qBlue(down))/4.0;
 
             average = qRgb(red, green, blue);
 
@@ -267,14 +269,11 @@ void MainWindow::bicubicResize(int target_width, int target_height)
             down = selectedImage->pixel(x_source, y_source+1);
             rightDown = selectedImage->pixel(x_source+1, y_source+1);
 
-            red = ((qRed(leftUpper) + qRed(upper) + qRed(rightupper) + qRed(left) +
-                    qRed(right) + qRed(leftDown) + qRed(down) + qRed(rightDown))/8.0 + qRed(center))/2.0;
+            red = (qRed(leftUpper) + qRed(upper) + qRed(rightupper) + qRed(left) + qRed(right) + qRed(leftDown) + qRed(down) + qRed(rightDown))/8.0;
 
-            green = ((qGreen(leftUpper) + qGreen(upper) + qGreen(rightupper) + qGreen(left) +
-                      qGreen(right) + qGreen(leftDown) + qGreen(down) + qGreen(rightDown))/8.0 + qGreen(center))/2.0;
+            green = (qGreen(leftUpper) + qGreen(upper) + qGreen(rightupper) + qGreen(left) + qGreen(right) + qGreen(leftDown) + qGreen(down) + qGreen(rightDown))/8.0;
 
-            blue = ((qBlue(leftUpper) + qBlue(upper) + qBlue(rightupper) + qBlue(left) +
-                     qBlue(right) + qBlue(leftDown) + qBlue(down) + qBlue(rightDown))/8.0 + qBlue(center))/2.0;
+            blue = (qBlue(leftUpper) + qBlue(upper) + qBlue(rightupper) + qBlue(left) + qBlue(right) + qBlue(leftDown) + qBlue(down) + qBlue(rightDown))/8.0;
 
             average = qRgb(red, green, blue);
 

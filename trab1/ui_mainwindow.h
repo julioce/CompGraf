@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Fri Sep 2 15:04:46 2011
-**      by: Qt User Interface Compiler version 4.6.3
+** Created: Sat Sep 3 21:08:08 2011
+**      by: Qt User Interface Compiler version 4.7.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -35,6 +35,7 @@ class Ui_MainWindow
 public:
     QAction *actionOpenFile;
     QAction *actionExit;
+    QAction *actionEffects;
     QWidget *centralWidget;
     QLabel *imgSelected;
     QFrame *line;
@@ -80,6 +81,7 @@ public:
     QPushButton *sepiaButton;
     QMenuBar *menuBar;
     QMenu *menuFile;
+    QMenu *menuExtras;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -95,6 +97,8 @@ public:
         actionOpenFile->setObjectName(QString::fromUtf8("actionOpenFile"));
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
+        actionEffects = new QAction(MainWindow);
+        actionEffects->setObjectName(QString::fromUtf8("actionEffects"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         imgSelected = new QLabel(centralWidget);
@@ -132,6 +136,7 @@ public:
         sizePolicy.setHeightForWidth(imgResult->sizePolicy().hasHeightForWidth());
         imgResult->setSizePolicy(sizePolicy);
         imgResult->setSizeIncrement(QSize(0, 0));
+        imgResult->setLayoutDirection(Qt::LeftToRight);
         imgResult->setAutoFillBackground(false);
         imgResult->setTextFormat(Qt::AutoText);
         imgResult->setScaledContents(false);
@@ -303,14 +308,18 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 800, 25));
+        menuBar->setGeometry(QRect(0, 0, 800, 22));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
+        menuExtras = new QMenu(menuBar);
+        menuExtras->setObjectName(QString::fromUtf8("menuExtras"));
         MainWindow->setMenuBar(menuBar);
 
         menuBar->addAction(menuFile->menuAction());
+        menuBar->addAction(menuExtras->menuAction());
         menuFile->addAction(actionOpenFile);
         menuFile->addAction(actionExit);
+        menuExtras->addAction(actionEffects);
 
         retranslateUi(MainWindow);
 
@@ -325,6 +334,7 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Image Factory", 0, QApplication::UnicodeUTF8));
         actionOpenFile->setText(QApplication::translate("MainWindow", "Open", 0, QApplication::UnicodeUTF8));
         actionExit->setText(QApplication::translate("MainWindow", "Exit", 0, QApplication::UnicodeUTF8));
+        actionEffects->setText(QApplication::translate("MainWindow", "Effects", 0, QApplication::UnicodeUTF8));
         imgSelected->setText(QString());
         resizeButton->setText(QApplication::translate("MainWindow", "Resize", 0, QApplication::UnicodeUTF8));
         imgResult->setText(QString());
@@ -359,6 +369,7 @@ public:
         greyscaleButton->setText(QString());
         sepiaButton->setText(QString());
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
+        menuExtras->setTitle(QApplication::translate("MainWindow", "Extras", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

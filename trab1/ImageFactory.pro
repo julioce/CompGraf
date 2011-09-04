@@ -9,11 +9,14 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    secundarywindow.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    secundarywindow.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    secundarywindow.ui
 
 RESOURCES += \
     Resources.qrc

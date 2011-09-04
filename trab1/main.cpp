@@ -1,6 +1,7 @@
 #include <QtGui/QApplication>
 #include <QString>
 #include "mainwindow.h"
+#include "secundarywindow.h"
 
 int main(int argc, char *argv[])
 {
