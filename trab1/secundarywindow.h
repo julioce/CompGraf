@@ -28,6 +28,8 @@ public slots:
     void changeR(void);
     void changeG(void);
     void changeB(void);
+    void changeBrightness(void);
+
 private:
 
 };

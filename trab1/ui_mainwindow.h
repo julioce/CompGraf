@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sat Sep 3 21:08:08 2011
+** Created: Sun Sep 4 17:17:43 2011
 **      by: Qt User Interface Compiler version 4.7.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -362,7 +362,7 @@ public:
          << QApplication::translate("MainWindow", "Bilinear", 0, QApplication::UnicodeUTF8)
          << QApplication::translate("MainWindow", "Bicubic", 0, QApplication::UnicodeUTF8)
         );
-        labelResult->setText(QApplication::translate("MainWindow", "Result", 0, QApplication::UnicodeUTF8));
+        labelResult->setText(QApplication::translate("MainWindow", "Result Preview", 0, QApplication::UnicodeUTF8));
         mirrorButton->setText(QString());
         reflectionButton->setText(QString());
         xRayButton->setText(QString());

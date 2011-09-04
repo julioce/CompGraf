@@ -105,7 +105,7 @@
      </rect>
     </property>
     <property name="sizePolicy">
-     <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
@@ -608,7 +608,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Result</string>
+     <string>Result Preview</string>
     </property>
    </widget>
    <widget class="QPushButton" name="mirrorButton">

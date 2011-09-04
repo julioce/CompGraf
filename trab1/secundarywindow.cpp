@@ -11,14 +11,16 @@ SecundaryWindow::SecundaryWindow(QWidget *parent, Ui::MainWindow *ui, QImage *se
     effect->setupUi(this);
 
     main = ui;
-    selected = new QImage(*selectedImage);
-    target = new QImage(*targetImg);
+    selected = selectedImage;
+    target = targetImg;
 
     connect(effect->applyChanges, SIGNAL(clicked()), this, SLOT(applyChanges()));
 
     connect(effect->rSlider, SIGNAL(sliderReleased()), this, SLOT(changeR()));
     connect(effect->gSlider, SIGNAL(sliderReleased()), this, SLOT(changeG()));
     connect(effect->bSlider, SIGNAL(sliderReleased()), this, SLOT(changeB()));
+
+    connect(effect->brightnessSlider, SIGNAL(sliderReleased()), this, SLOT(changeBrightness()));
 }
 
 SecundaryWindow::~SecundaryWindow()
@@ -40,17 +42,18 @@ void SecundaryWindow::changeEvent(QEvent *e)
 
 void SecundaryWindow::applyChanges(void)
 {
-    qDebug() << "Salvou a alteracao feita";
+    qDebug() << "Salvou a alteracao feita em Effects";
     main->imgSelected->setPixmap(QPixmap::fromImage(*target));
     selected = target;
 }
 
-
 void SecundaryWindow::changeR(void)
 {
+    qDebug() << "Alterando o Red";
     int width = selected->width();
     int height = selected->height();
     int red, green, blue;
+    int sliderValue = effect->brightnessSlider->value();
 
     QRgb qrgb = qRgb(0,0,0);
 
@@ -60,8 +63,8 @@ void SecundaryWindow::changeR(void)
             qrgb = selected->pixel(i, j);
 
             red = qRed(qrgb);
-            green = qGreen(qrgb)*(effect->rSlider->value()/255.0);
-            blue = qBlue(qrgb)*(effect->rSlider->value()/255.0);
+            green = qGreen(qrgb)*(sliderValue/255.0);
+            blue = qBlue(qrgb)*(sliderValue/255.0);
 
             qrgb = qRgb(red, green, blue);
 
@@ -74,9 +77,11 @@ void SecundaryWindow::changeR(void)
 
 void SecundaryWindow::changeG(void)
 {
+    qDebug() << "Alterando o Green";
     int width = selected->width();
     int height = selected->height();
     int red, green, blue;
+    int sliderValue = effect->brightnessSlider->value();
 
     QRgb qrgb = qRgb(0,0,0);
 
@@ -85,9 +90,9 @@ void SecundaryWindow::changeG(void)
 
             qrgb = selected->pixel(i, j);
 
-            red = qRed(qrgb)*(effect->gSlider->value()/255.0);
+            red = qRed(qrgb)*(sliderValue/255.0);
             green = qGreen(qrgb);
-            blue = qBlue(qrgb)*(effect->gSlider->value()/255.0);
+            blue = qBlue(qrgb)*(sliderValue/255.0);
 
             qrgb = qRgb(red, green, blue);
 
@@ -100,9 +105,11 @@ void SecundaryWindow::changeG(void)
 
 void SecundaryWindow::changeB(void)
 {
+    qDebug() << "Alterando o Blue";
     int width = selected->width();
     int height = selected->height();
     int red, green, blue;
+    int sliderValue = effect->brightnessSlider->value();
 
     QRgb qrgb = qRgb(0,0,0);
 
@@ -111,8 +118,8 @@ void SecundaryWindow::changeB(void)
 
             qrgb = selected->pixel(i, j);
 
-            red = qRed(qrgb)*(effect->bSlider->value()/255.0);
-            green = qGreen(qrgb)*(effect->bSlider->value()/255.0);
+            red = qRed(qrgb)*(sliderValue/255.0);
+            green = qGreen(qrgb)*(sliderValue/255.0);
             blue = qBlue(qrgb);
 
             qrgb = qRgb(red, green, blue);
@@ -124,3 +131,41 @@ void SecundaryWindow::changeB(void)
     main->imgResult->setPixmap(QPixmap::fromImage(*target));
 }
 
+void SecundaryWindow::changeBrightness(void)
+{
+    qDebug() << "Alterando o Brightness";
+    int width = selected->width();
+    int height = selected->height();
+    int red, green, blue;
+    double sliderValue = effect->brightnessSlider->value();
+
+    QRgb qrgb = qRgb(0,0,0);
+
+    if(sliderValue > 127.0){
+        sliderValue = (1.0/(255.0-sliderValue))+127.0;
+    }else{
+        sliderValue = 255.0+(127.0-sliderValue);
+    }
+
+    qDebug() << sliderValue;
+    for (int i = 0; i < width; i++) {
+        for (int j = 0; j < height; j++) {
+
+            qrgb = selected->pixel(i, j);
+
+            red = qRed(qrgb)*(sliderValue/255.0);
+            green = qGreen(qrgb)*(sliderValue/255.0);
+            blue = qBlue(qrgb)*(sliderValue/255.0);
+
+            if (red>255.0) red=255.0;
+            if (green>255.0) green=255.0;
+            if (blue>255.0) blue=255.0;
+
+            qrgb = qRgb(red, green, blue);
+
+            target->setPixel(i, j, qrgb);
+        }
+    }
+
+    main->imgResult->setPixmap(QPixmap::fromImage(*target));
+}

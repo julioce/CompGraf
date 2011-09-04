@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'secundarywindow.h'
 **
-** Created: Sun Sep 4 16:05:43 2011
+** Created: Sun Sep 4 17:17:48 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_SecundaryWindow[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -35,6 +35,7 @@ static const uint qt_meta_data_SecundaryWindow[] = {
       32,   16,   16,   16, 0x0a,
       42,   16,   16,   16, 0x0a,
       52,   16,   16,   16, 0x0a,
+      62,   16,   16,   16, 0x0a,
 
        0        // eod
 };
@@ -42,6 +43,7 @@ static const uint qt_meta_data_SecundaryWindow[] = {
 static const char qt_meta_stringdata_SecundaryWindow[] = {
     "SecundaryWindow\0\0applyChanges()\0"
     "changeR()\0changeG()\0changeB()\0"
+    "changeBrightness()\0"
 };
 
 const QMetaObject SecundaryWindow::staticMetaObject = {
@@ -77,9 +79,10 @@ int SecundaryWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 1: changeR(); break;
         case 2: changeG(); break;
         case 3: changeB(); break;
+        case 4: changeBrightness(); break;
         default: ;
         }
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

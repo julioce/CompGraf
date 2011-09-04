@@ -80,8 +80,8 @@ void MainWindow::exit(void)
 void MainWindow::applyChanges(void)
 {
     qDebug() << "Salvou a alteracao feita";
-    ui->imgSelected->setPixmap(QPixmap::fromImage(*targetImg));
     selectedImage = targetImg;
+    ui->imgSelected->setPixmap(QPixmap::fromImage(*selectedImage));
 }
 
 void MainWindow::saveFile(void)
