@@ -3,7 +3,7 @@
  <class>SecundaryWindow</class>
  <widget class="QWidget" name="SecundaryWindow">
   <property name="windowModality">
-   <enum>Qt::WindowModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -93,7 +93,7 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>80</x>
      <y>220</y>
      <width>114</width>
      <height>32</height>
@@ -101,6 +101,19 @@
    </property>
    <property name="text">
     <string>PushButton</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="applyChanges">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>270</y>
+     <width>121</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Apply Changes</string>
    </property>
   </widget>
  </widget>

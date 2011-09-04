@@ -12,9 +12,11 @@ class SecundaryWindow : public QMainWindow
 {
     Q_OBJECT
 public:
-    SecundaryWindow(QWidget *parent = 0);
+    SecundaryWindow(QWidget *parent = 0, Ui::MainWindow *ui = 0, QImage *selectedImage = 0, QImage *targetImg = 0);
     ~SecundaryWindow();
     Ui::SecundaryWindow *effect;
+    Ui::MainWindow *main;
+    QImage *selected, *target;
 
 protected:
     void changeEvent(QEvent *e);
@@ -22,7 +24,8 @@ protected:
 signals:
 
 public slots:
-    void readFile(void);
+    void changeRGB(void);
+    void applyChanges(void);
 
 private:
 

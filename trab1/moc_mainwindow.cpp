@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Sun Sep 4 00:05:13 2011
+** Created: Sun Sep 4 13:47:32 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -33,25 +33,25 @@ static const uint qt_meta_data_MainWindow[] = {
  // slots: signature, parameters, type, tag, flags
       12,   11,   11,   11, 0x0a,
       23,   11,   11,   11, 0x0a,
-      37,   11,   11,   11, 0x0a,
-      48,   11,   11,   11, 0x0a,
-      55,   11,   11,   11, 0x0a,
-      65,   11,   11,   11, 0x0a,
-      72,   11,   11,   11, 0x0a,
-      81,   11,   11,   11, 0x0a,
-      88,   11,   11,   11, 0x0a,
-     102,   11,   11,   11, 0x0a,
-     115,   11,   11,   11, 0x0a,
-     124,   11,   11,   11, 0x0a,
-     137,   11,   11,   11, 0x0a,
-     149,   11,   11,   11, 0x0a,
-     156,   11,   11,   11, 0x0a,
+      38,   11,   11,   11, 0x0a,
+      49,   11,   11,   11, 0x0a,
+      56,   11,   11,   11, 0x0a,
+      66,   11,   11,   11, 0x0a,
+      73,   11,   11,   11, 0x0a,
+      82,   11,   11,   11, 0x0a,
+      89,   11,   11,   11, 0x0a,
+     103,   11,   11,   11, 0x0a,
+     116,   11,   11,   11, 0x0a,
+     125,   11,   11,   11, 0x0a,
+     138,   11,   11,   11, 0x0a,
+     150,   11,   11,   11, 0x0a,
+     157,   11,   11,   11, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_MainWindow[] = {
-    "MainWindow\0\0openFile()\0saveChanges()\0"
+    "MainWindow\0\0openFile()\0applyChanges()\0"
     "saveFile()\0exit()\0effects()\0zoom()\0"
     "resize()\0crop()\0rotateRight()\0"
     "rotateLeft()\0mirror()\0reflection()\0"
@@ -88,7 +88,7 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: openFile(); break;
-        case 1: saveChanges(); break;
+        case 1: applyChanges(); break;
         case 2: saveFile(); break;
         case 3: exit(); break;
         case 4: effects(); break;

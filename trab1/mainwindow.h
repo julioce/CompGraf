@@ -20,7 +20,7 @@ protected:
 
 public slots:
     void openFile(void);
-    void saveChanges(void);
+    void applyChanges(void);
     void saveFile(void);
     void exit(void);
     void effects(void);

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'secundarywindow.ui'
 **
-** Created: Sun Sep 4 02:19:17 2011
+** Created: Sun Sep 4 13:46:35 2011
 **      by: Qt User Interface Compiler version 4.7.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -31,12 +31,13 @@ public:
     QLabel *RGBlabel;
     QLabel *hiddenPreview;
     QPushButton *pushButton;
+    QPushButton *applyChanges;
 
     void setupUi(QWidget *SecundaryWindow)
     {
         if (SecundaryWindow->objectName().isEmpty())
             SecundaryWindow->setObjectName(QString::fromUtf8("SecundaryWindow"));
-        SecundaryWindow->setWindowModality(Qt::WindowModal);
+        SecundaryWindow->setWindowModality(Qt::NonModal);
         SecundaryWindow->resize(349, 323);
         rSlider = new QSlider(SecundaryWindow);
         rSlider->setObjectName(QString::fromUtf8("rSlider"));
@@ -61,7 +62,10 @@ public:
         hiddenPreview->setGeometry(QRect(330, 300, 0, 0));
         pushButton = new QPushButton(SecundaryWindow);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(0, 220, 114, 32));
+        pushButton->setGeometry(QRect(80, 220, 114, 32));
+        applyChanges = new QPushButton(SecundaryWindow);
+        applyChanges->setObjectName(QString::fromUtf8("applyChanges"));
+        applyChanges->setGeometry(QRect(10, 270, 121, 32));
 
         retranslateUi(SecundaryWindow);
 
@@ -74,6 +78,7 @@ public:
         RGBlabel->setText(QApplication::translate("SecundaryWindow", "R     G     B", 0, QApplication::UnicodeUTF8));
         hiddenPreview->setText(QString());
         pushButton->setText(QApplication::translate("SecundaryWindow", "PushButton", 0, QApplication::UnicodeUTF8));
+        applyChanges->setText(QApplication::translate("SecundaryWindow", "Apply Changes", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

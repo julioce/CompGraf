@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionEffects, SIGNAL(triggered()), this, SLOT(effects()));
 
     connect(ui->actionOpenFile, SIGNAL(triggered()), this, SLOT(openFile()));
-    connect(ui->applyButton, SIGNAL(clicked()), this, SLOT(saveChanges()));
+    connect(ui->applyButton, SIGNAL(clicked()), this, SLOT(applyChanges()));
     connect(ui->saveButton, SIGNAL(clicked()), this, SLOT(saveFile()));
     connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(exit()));
 
@@ -50,7 +50,8 @@ void MainWindow::changeEvent(QEvent *e)
 }
 
 void MainWindow::effects(void) {
-    SecundaryWindow *s = new SecundaryWindow;
+    qDebug() << "Chamou a janela effects";
+    SecundaryWindow *s = new SecundaryWindow(ui->centralWidget, ui, selectedImage, targetImg);
     s->show();
 }
 
@@ -75,7 +76,7 @@ void MainWindow::exit(void)
     qApp->exit(0);
 }
 
-void MainWindow::saveChanges(void)
+void MainWindow::applyChanges(void)
 {
     qDebug() << "Salvou a alteracao feita";
     ui->imgSelected->setPixmap(QPixmap::fromImage(*targetImg));
