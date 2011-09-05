@@ -733,19 +733,19 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="actionOpenFile"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuExtras">
     <property name="title">
-     <string>Extras</string>
+     <string>&amp;Colors</string>
     </property>
     <addaction name="actionEffects"/>
    </widget>
@@ -759,12 +759,12 @@
   </action>
   <action name="actionExit">
    <property name="text">
-    <string>Exit</string>
+    <string>&amp;Exit</string>
    </property>
   </action>
   <action name="actionEffects">
    <property name="text">
-    <string>Effects</string>
+    <string>&amp;Effects</string>
    </property>
   </action>
  </widget>

@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'secundarywindow.ui'
 **
-** Created: Sun Sep 4 17:39:55 2011
-**      by: Qt User Interface Compiler version 4.7.3
+** Created: Mon Sep 5 09:21:57 2011
+**      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -46,7 +46,7 @@ public:
         if (SecundaryWindow->objectName().isEmpty())
             SecundaryWindow->setObjectName(QString::fromUtf8("SecundaryWindow"));
         SecundaryWindow->setWindowModality(Qt::NonModal);
-        SecundaryWindow->resize(349, 323);
+        SecundaryWindow->resize(223, 293);
         rSlider = new QSlider(SecundaryWindow);
         rSlider->setObjectName(QString::fromUtf8("rSlider"));
         rSlider->setGeometry(QRect(23, 60, 22, 160));
@@ -73,7 +73,7 @@ public:
         RGBlabel->setGeometry(QRect(30, 40, 81, 16));
         applyChanges = new QPushButton(SecundaryWindow);
         applyChanges->setObjectName(QString::fromUtf8("applyChanges"));
-        applyChanges->setGeometry(QRect(10, 280, 121, 32));
+        applyChanges->setGeometry(QRect(50, 240, 121, 32));
         labelLess = new QLabel(SecundaryWindow);
         labelLess->setObjectName(QString::fromUtf8("labelLess"));
         labelLess->setGeometry(QRect(10, 60, 16, 16));
