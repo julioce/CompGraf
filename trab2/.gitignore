@@ -1,0 +1,4 @@
+*.user
+Makefile
+bin/*.*
+tmp/*.o
