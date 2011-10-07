@@ -15,6 +15,7 @@ MainWindow::MainWindow()
     QIcon a(":aresta");
     QIcon v(":vertice");
     QIcon f(":face");
+    QIcon bt(":botaoAdicionaPonto");
 
     fila = new CommandQueue();
     centralpanel = new RenderPanel(fila);
@@ -22,7 +23,7 @@ MainWindow::MainWindow()
 
     tb = new QToolBar("Tool Bar", this);
     fd = new QFileDialog(this, Qt::Window);
-    fd->setDirectory("../resources");
+    fd->setDirectory("../../halfedge/resources");
     fd->setFilter("*.ply");
     
     
@@ -43,7 +44,10 @@ MainWindow::MainWindow()
     vertice = tb->addAction(v,"");
     aresta = tb->addAction(a,"");
     face = tb->addAction(f, "");
+    tb->addSeparator();
     del = tb->addAction("deleta");
+    vdv = tb->addAction("Vizinho do Vizinho");
+    botaoAdicionaPonto = tb->addAction("Novo");
 
     addToolBar(Qt::LeftToolBarArea, tb);
 
@@ -87,6 +91,13 @@ void MainWindow::clicou(QAction* a)
     }else if(a ==del)
     {
         fila->produz(DELETA);
+    }else if(a == vdv)
+    {
+        fila->produz(VDV);
+    }else if(a == botaoAdicionaPonto)
+    {
+        fila->produz(TROCACLICK);
+        qDebug("Opa! cliquei");
     }
 }
 

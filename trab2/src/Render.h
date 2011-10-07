@@ -29,7 +29,7 @@ public slots:
                 
 public:
         Render(int w, int y, CommandQueue *c);
-
+    bool selecionaFace;
     void run(void);
 
 private:
@@ -49,7 +49,7 @@ private:
         void renderizaArestas(void);
         void renderizaVertices(void);
         void renderizaFront(void);
-        void click(void);
+        void click();
         //void escolha(void);
         void reiniciaBuffers(int w, int h);
         void verticeSelecionado(void);
@@ -59,6 +59,8 @@ private:
         void renderizaComponente(HalfEdge *h,QImage* b,QPen pen);
         bool componenteFaceUnica(HalfEdge *h);
         void deleta();
+        void vdv();
+        void trocaClick(void);
 
         Vertex* vsel;
         HalfEdge* hsel;

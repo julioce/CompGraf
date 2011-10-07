@@ -44,6 +44,7 @@ Render::Render(int w, int h, CommandQueue *c) {
     mostraFace = false;
     mostraPonto = false;
 
+    selecionaFace = TRUE;
 
 }
 
@@ -101,6 +102,12 @@ void Render::run(void) {
                 break;
             case DELETA:
                 deleta();
+                break;
+            case VDV:
+                vdv();
+                break;
+            case TROCACLICK:
+                trocaClick();
                 break;
         }
         atualizaScreen();
@@ -361,7 +368,12 @@ void Render::click(void)
         h = interface.getArestaNear(p1);
     }else if(rgb == corFace)
     {
-        f = interface.getFaceNear(p1);
+        if (selecionaFace){
+            f = interface.getFaceNear(p1);
+        }
+        else{
+            qDebug("Gerar Triangulos");
+        }
     }
 
 
@@ -803,7 +815,6 @@ void Render::deleta()
     //para verificar se a face f eh externa, use: interface.isExterna(f);
 
 
-
     if(hsel != NULL)
     {
 
@@ -869,4 +880,54 @@ void Render::deleta()
         }
     }
     qDebug() << "Chegou!";
+}
+
+void Render::vdv()
+{
+    QPainter buff(frontBuffer);
+    QPoint p;
+    HalfEdge *partida, *partida2;
+    HalfEdge *prox;
+    HalfEdge *half;
+    Vertex *aux;
+
+    Vertex *v;
+
+    buff.setPen(vizinhoScreen);
+
+    if(vsel != NULL)
+        partida = vsel->getEdge();
+    else
+        return;
+
+    partida2 = partida->getProx();
+
+    prox = partida2;
+    do {
+        aux = prox->getDestino();
+        buff.drawEllipse(transforma(aux->getPoint()),5,5);
+
+        prox = prox->getTwin()->getProx();
+    } while (prox != partida2);
+
+    partida2 = partida->getTwin()->getProx()->getProx();
+
+    prox = partida2;
+    do {
+        aux = prox->getDestino();
+        buff.drawEllipse(transforma(aux->getPoint()),5,5);
+
+        prox = prox->getTwin()->getProx();
+    } while (prox != partida2);
+
+}
+
+
+void Render::trocaClick(void)
+{
+    if(selecionaFace){
+        selecionaFace = FALSE;
+     }else{
+        selecionaFace = TRUE;
+     }
 }
