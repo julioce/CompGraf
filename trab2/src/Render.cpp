@@ -107,7 +107,12 @@ void Render::run(void) {
                 vdv();
                 break;
             case TROCACLICK:
+                if(sel == NULL)
+                    sel = new QPoint();
+                sel->setX(ex.x);
+                sel->setY(ex.y);
                 trocaClick();
+                pintaPonto();
                 break;
         }
         atualizaScreen();
@@ -372,7 +377,7 @@ void Render::click(void)
             f = interface.getFaceNear(p1);
         }
         else{
-            qDebug("Gerar Triangulos");
+            pintaPonto();
         }
     }
 
@@ -878,8 +883,8 @@ void Render::deleta()
             renderiza();
             renderizaFront();
         }
+        qDebug() << "Executou o deleta()";
     }
-    qDebug() << "Chegou!";
 }
 
 void Render::vdv()
@@ -927,7 +932,36 @@ void Render::trocaClick(void)
 {
     if(selecionaFace){
         selecionaFace = FALSE;
-     }else{
+    }else{
         selecionaFace = TRUE;
-     }
+    }
+}
+
+void Render::pintaPonto(void)
+{
+    /*
+    pegar ponto clicado e transformar ponto de corrdenadas
+    de mundo para coordenadas do grafo usando o destransforma
+    */
+    QPoint ponto;
+    QPointF pontoNaMalha;
+
+    ponto.setX(sel->x());
+    ponto.setY(sel->y());
+
+    pontoNaMalha = destransforma(ponto);
+
+
+    /*
+    Pega a face atingida pelo click do mouse na coordenada pontoNaMalha
+    */
+    Face* face = interface.getFaceNear(pontoNaMalha);
+    QList<HalfEdge *> *lista = new QList<HalfEdge *>;
+
+
+    HalfEdge *edge = new HalfEdge();
+    edge->
+
+    qDebug() << pontoNaMalha;
+
 }

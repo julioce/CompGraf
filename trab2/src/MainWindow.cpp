@@ -46,8 +46,8 @@ MainWindow::MainWindow()
     face = tb->addAction(f, "");
     tb->addSeparator();
     del = tb->addAction("deleta");
-    vdv = tb->addAction("Vizinho do Vizinho");
-    botaoAdicionaPonto = tb->addAction("Novo");
+    vdv = tb->addAction("Viz. do Viz.");
+    botaoAdicionaPonto = tb->addAction("Click Face");
 
     addToolBar(Qt::LeftToolBarArea, tb);
 
@@ -97,7 +97,6 @@ void MainWindow::clicou(QAction* a)
     }else if(a == botaoAdicionaPonto)
     {
         fila->produz(TROCACLICK);
-        qDebug("Opa! cliquei");
     }
 }
 

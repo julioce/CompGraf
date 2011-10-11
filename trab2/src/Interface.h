@@ -42,7 +42,7 @@ void removeFaceFromCollection(Face*);
 void removeEdgeFromCollection(HalfEdge*);
 
 
-private:
+public:
     KDTree *kdt;
     QVector<Face*> faces;
     QMap<QPair<QPointF,QPointF>, HalfEdge *> map;
