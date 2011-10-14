@@ -43,7 +43,7 @@ Render::Render(int w, int h, CommandQueue *c) {
     mostraFace = false;
     mostraPonto = false;
 
-    selecionaFace = TRUE;
+    selecionaFace = true;
 
 }
 
@@ -330,7 +330,6 @@ void Render::renderiza(void)
     back.fillRect(backBuffer->rect(), Qt::white);
     back.fillRect(backBuffer->rect(), Qt::transparent);
 
-
     buff.setPen(arestaScreen);
 
     for(int i = 0; i < lista.size() ; ++i)
@@ -379,7 +378,6 @@ void Render::click(void)
             criaPonto();
         }
     }
-
 
     if(hsel != NULL)
         t = hsel->getTwin();
@@ -935,7 +933,6 @@ void Render::trocaClick(void)
 
 void Render::criaPonto(void)
 {
-    QPainter buff(frontBuffer);
     QPointF point;
     QPoint click;
     QPointF start;
@@ -944,7 +941,7 @@ void Render::criaPonto(void)
     HalfEdge *edge;
     QVector<QPointF> list;
 
-    /* get click */
+    /* get click and transforms to point */
     click.setX(sel->x());
     click.setY(sel->y());
     point = destransforma(click);
@@ -971,12 +968,16 @@ void Render::criaPonto(void)
 
         /* adds to point */
         list << start;
+        list << end;
+        list << point;
+        qDebug() << list;
+
+        interface.addFace(list);
+
+        list.clear();
     }
 
-    list << point;
-    qDebug() << list;
-
-    interface.addFace(list);
     renderiza();
-    renderizaFront();
+    //renderizaFront();
+
 }
