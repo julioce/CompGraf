@@ -61,7 +61,7 @@ private:
     void deleta();
     void vdv();
     void trocaClick(void);
-    void pintaPonto(void);
+    void criaPonto(void);
 
     Vertex* vsel;
     HalfEdge* hsel;

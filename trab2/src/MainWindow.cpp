@@ -45,9 +45,9 @@ MainWindow::MainWindow()
     aresta = tb->addAction(a,"");
     face = tb->addAction(f, "");
     tb->addSeparator();
-    del = tb->addAction("deleta");
+    del = tb->addAction("Deletar");
     vdv = tb->addAction("Viz. do Viz.");
-    botaoAdicionaPonto = tb->addAction("Click Face");
+    botaoAdicionaPonto = tb->addAction("Criar Ponto");
 
     addToolBar(Qt::LeftToolBarArea, tb);
 

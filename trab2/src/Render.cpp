@@ -3,7 +3,6 @@
 #include <PlyParser.h>
 #include <QRgb>
 
-
 Render::Render(int w, int h, CommandQueue *c) {
 
     screenW = w;
@@ -112,7 +111,7 @@ void Render::run(void) {
                 sel->setX(ex.x);
                 sel->setY(ex.y);
                 trocaClick();
-                pintaPonto();
+                criaPonto();
                 break;
         }
         atualizaScreen();
@@ -377,7 +376,7 @@ void Render::click(void)
             f = interface.getFaceNear(p1);
         }
         else{
-            pintaPonto();
+            criaPonto();
         }
     }
 
@@ -882,8 +881,9 @@ void Render::deleta()
             hsel = NULL;
             renderiza();
             renderizaFront();
+
+            qDebug() << "Executou o deleta()";
         }
-        qDebug() << "Executou o deleta()";
     }
 }
 
@@ -930,38 +930,53 @@ void Render::vdv()
 
 void Render::trocaClick(void)
 {
-    if(selecionaFace){
-        selecionaFace = FALSE;
-    }else{
-        selecionaFace = TRUE;
-    }
+    selecionaFace = !selecionaFace;
 }
 
-void Render::pintaPonto(void)
+void Render::criaPonto(void)
 {
-    /*
-    pegar ponto clicado e transformar ponto de corrdenadas
-    de mundo para coordenadas do grafo usando o destransforma
-    */
-    QPoint ponto;
-    QPointF pontoNaMalha;
+    QPainter buff(frontBuffer);
+    QPointF point;
+    QPoint click;
+    QPointF start;
+    QPointF end;
+    QPointF first;
+    HalfEdge *edge;
+    QVector<QPointF> list;
 
-    ponto.setX(sel->x());
-    ponto.setY(sel->y());
+    /* get click */
+    click.setX(sel->x());
+    click.setY(sel->y());
+    point = destransforma(click);
 
-    pontoNaMalha = destransforma(ponto);
+    /* get the nearest edge and his star and end */
+    edge = interface.getArestaNear(point);
+    if(edge->getFace() != interface.getFaceNear(point)){
+        edge = edge->getTwin();
+    }
 
+    end = edge->getDestino()->getPoint();
+    first = edge->getOrigem()->getPoint();
+    start = edge->getOrigem()->getPoint();
 
-    /*
-    Pega a face atingida pelo click do mouse na coordenada pontoNaMalha
-    */
-    Face* face = interface.getFaceNear(pontoNaMalha);
-    QList<HalfEdge *> *lista = new QList<HalfEdge *>;
+    /* while doesn't arrives into the start point keep running to the next edge */
+    while(end != first)
+    {
+        /* get next edge */
+        edge = edge->getProx();
 
+        /* get edge data */
+        start = edge->getOrigem()->getPoint();
+        end = edge->getDestino()->getPoint();
 
-    HalfEdge *edge = new HalfEdge();
-    edge->
+        /* adds to point */
+        list << start;
+    }
 
-    qDebug() << pontoNaMalha;
+    list << point;
+    qDebug() << list;
 
+    interface.addFace(list);
+    renderiza();
+    renderizaFront();
 }
