@@ -1,1 +1,3 @@
 *.ppt
+trab2/tmp/*.o
+trab2/tmp/*.cpp
