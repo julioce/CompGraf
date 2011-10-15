@@ -111,7 +111,6 @@ void Render::run(void) {
                 sel->setX(ex.x);
                 sel->setY(ex.y);
                 trocaClick();
-                criaPonto();
                 break;
         }
         atualizaScreen();
@@ -362,7 +361,6 @@ void Render::click(void)
     QRgb rgb = backBuffer->pixel(p2);
     p1 = destransforma(p2);
 
-
     if(rgb == corVerticeGrosso)
     {
         v = interface.getVerticeNear(p1);
@@ -371,7 +369,7 @@ void Render::click(void)
         h = interface.getArestaNear(p1);
     }else if(rgb == corFace)
     {
-        if (selecionaFace){
+        if(selecionaFace){
             f = interface.getFaceNear(p1);
         }
         else{
@@ -928,7 +926,10 @@ void Render::vdv()
 
 void Render::trocaClick(void)
 {
-    selecionaFace = !selecionaFace;
+    if(selecionaFace)
+        selecionaFace = false;
+    else
+        selecionaFace = true;
 }
 
 void Render::criaPonto(void)
@@ -946,12 +947,16 @@ void Render::criaPonto(void)
     click.setY(sel->y());
     point = destransforma(click);
 
-    /* get the nearest edge and his star and end */
+    /* get the nearest edge and his start and end */
     edge = interface.getArestaNear(point);
+    /* if the current face is different from face
+       form the ahlf-edge his twin is the right one
+    */
     if(edge->getFace() != interface.getFaceNear(point)){
         edge = edge->getTwin();
     }
 
+    /* gets the first start, the current start and the current end */
     end = edge->getDestino()->getPoint();
     first = edge->getOrigem()->getPoint();
     start = edge->getOrigem()->getPoint();
@@ -966,18 +971,22 @@ void Render::criaPonto(void)
         start = edge->getOrigem()->getPoint();
         end = edge->getDestino()->getPoint();
 
-        /* adds to point */
+        /* adds to points to a list */
         list << start;
         list << end;
         list << point;
         qDebug() << list;
 
+        /* creates a new face based on the three points
+           2 from HalfEdge (start, end) + point(click)
+        */
         interface.addFace(list);
 
+        /* empty the list for a next round */
         list.clear();
     }
 
+    /* redraw */
     renderiza();
-    //renderizaFront();
 
 }
