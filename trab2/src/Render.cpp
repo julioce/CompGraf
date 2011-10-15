@@ -953,7 +953,7 @@ void Render::addFullVertex(void)
 
     /* get the nearest edge and his start and end */
     edge = interface.getArestaNear(point);
-    face = edge->getFace();
+    face = interface.getFaceNear(point);
 
     /* if the current face is different from face of the half-edge his twin is the right one */
     if(edge->getFace() != interface.getFaceNear(point)){
@@ -974,9 +974,9 @@ void Render::addFullVertex(void)
         end = edge->getDestino()->getPoint();
 
         /* adds to points to a list */
-        list << point;
         list << start;
         list << end;
+        list << point;
 
         /* creates a new face based on the three points 2 from HalfEdge (start, end) + point(click) */
         interface.addFace(list);
@@ -989,10 +989,13 @@ void Render::addFullVertex(void)
 
     }
 
+    /* iterates throughout all the faces and removes the current face, the larger face */
     for(int i = 0; i < faces.size(); i++)
     {
+        /* actual face */
         Face *atual = faces[i];
 
+        /* if face listed, remove it */
         if (atual == face)
         {
             faces.remove(i);
