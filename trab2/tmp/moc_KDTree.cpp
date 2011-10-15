@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'KDTree.h'
 **
-** Created: Wed Sep 14 11:02:52 2011
+** Created: Sat Oct 15 08:15:55 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

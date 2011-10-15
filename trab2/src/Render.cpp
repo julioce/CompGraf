@@ -1,5 +1,6 @@
 #include <Render.h>
 #include <QPaintDevice>
+#include <QFileDialog>
 #include <PlyParser.h>
 #include <QRgb>
 
@@ -43,7 +44,7 @@ Render::Render(int w, int h, CommandQueue *c) {
     mostraFace = false;
     mostraPonto = false;
 
-    selecionaFace = true;
+    faceSelected = true;
 
 }
 
@@ -59,59 +60,62 @@ void Render::run(void) {
         }
         switch(ex.cmd)
         {
-            case NENHUM:
-                msleep(100);
-                continue;
-            case INCZOOM:
-                incZoom();
-                break;
-            case DECZOOM:
-                decZoom();
-                break;
-            case INCX:
-                incX();
-                break;
-            case DECX:
-                decX();
-                break;
-            case INCY:
-                incY();
-                break;
-            case DECY:
-                decY();
-                break;
-            case PONTOS:
-                mostraPonto = !mostraPonto;
-                renderizaFront();
-                break;
-            case ARESTAS:
-                mostraAresta = !mostraAresta;
-                renderizaFront();
-                break;
-            case FACES:
-                mostraFace = !mostraFace;
-                renderizaFront();
-                break;
-            case SELECT:
-                if(sel == NULL)
-                    sel = new QPoint();
-                sel->setX(ex.x);
-                sel->setY(ex.y);
-                click();
-                break;
-            case DELETA:
-                deleta();
-                break;
-            case VDV:
-                vdv();
-                break;
-            case TROCACLICK:
-                if(sel == NULL)
-                    sel = new QPoint();
-                sel->setX(ex.x);
-                sel->setY(ex.y);
-                trocaClick();
-                break;
+        case NENHUM:
+            msleep(100);
+            continue;
+        case INCZOOM:
+            incZoom();
+            break;
+        case DECZOOM:
+            decZoom();
+            break;
+        case INCX:
+            incX();
+            break;
+        case DECX:
+            decX();
+            break;
+        case INCY:
+            incY();
+            break;
+        case DECY:
+            decY();
+            break;
+        case PONTOS:
+            mostraPonto = !mostraPonto;
+            renderizaFront();
+            break;
+        case ARESTAS:
+            mostraAresta = !mostraAresta;
+            renderizaFront();
+            break;
+        case FACES:
+            mostraFace = !mostraFace;
+            renderizaFront();
+            break;
+        case SELECT:
+            if(sel == NULL)
+            sel = new QPoint();
+            sel->setX(ex.x);
+            sel->setY(ex.y);
+            click();
+            break;
+        case DELETA:
+            deleta();
+            break;
+        case VDV:
+            vdv();
+            break;
+        case SWITCHCLICK:
+            if(sel == NULL)
+                sel = new QPoint();
+            sel->setX(ex.x);
+            sel->setY(ex.y);
+            switchClick();
+            break;
+        case SALVAR:
+            salvar();
+            break;
         }
         atualizaScreen();
     } while (true);
@@ -369,11 +373,12 @@ void Render::click(void)
         h = interface.getArestaNear(p1);
     }else if(rgb == corFace)
     {
-        if(selecionaFace){
+        /* if i switched the click i should add a full vertex */
+        if(faceSelected){
             f = interface.getFaceNear(p1);
         }
         else{
-            criaPonto();
+            addFullVertex();
         }
     }
 
@@ -889,10 +894,7 @@ void Render::vdv()
     QPoint p;
     HalfEdge *partida, *partida2;
     HalfEdge *prox;
-    HalfEdge *half;
     Vertex *aux;
-
-    Vertex *v;
 
     buff.setPen(vizinhoScreen);
 
@@ -924,15 +926,15 @@ void Render::vdv()
 }
 
 
-void Render::trocaClick(void)
+void Render::switchClick(void)
 {
-    if(selecionaFace)
-        selecionaFace = false;
+    if(faceSelected)
+        faceSelected = false;
     else
-        selecionaFace = true;
+        faceSelected = true;
 }
 
-void Render::criaPonto(void)
+void Render::addFullVertex(void)
 {
     QPointF point;
     QPoint click;
@@ -949,6 +951,7 @@ void Render::criaPonto(void)
 
     /* get the nearest edge and his start and end */
     edge = interface.getArestaNear(point);
+
     /* if the current face is different from face
        form the ahlf-edge his twin is the right one
     */
@@ -961,7 +964,7 @@ void Render::criaPonto(void)
     first = edge->getOrigem()->getPoint();
     start = edge->getOrigem()->getPoint();
 
-    /* while doesn't arrives into the start point keep running to the next edge */
+    /* while doesn't arrives into the start point, keep running to the next edge */
     while(end != first)
     {
         /* get next edge */
@@ -975,18 +978,23 @@ void Render::criaPonto(void)
         list << start;
         list << end;
         list << point;
-        qDebug() << list;
 
         /* creates a new face based on the three points
            2 from HalfEdge (start, end) + point(click)
         */
+        interface.addVertex(point);
         interface.addFace(list);
+
 
         /* empty the list for a next round */
         list.clear();
+
+        /* redraw */
+        renderiza();
     }
+}
 
-    /* redraw */
-    renderiza();
-
+void Render::salvar(void)
+{
+    screen->save("./save.png", "PNG", 60);
 }

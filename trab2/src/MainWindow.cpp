@@ -16,6 +16,7 @@ MainWindow::MainWindow()
     QIcon v(":vertice");
     QIcon f(":face");
     QIcon bt(":botaoAdicionaPonto");
+    QIcon sv(":botaoSalvar");
 
     fila = new CommandQueue();
     centralpanel = new RenderPanel(fila);
@@ -23,14 +24,14 @@ MainWindow::MainWindow()
 
     tb = new QToolBar("Tool Bar", this);
     fd = new QFileDialog(this, Qt::Window);
-    fd->setDirectory("../../halfedge/resources");
+    fd->setDirectory("../resources");
     fd->setFilter("*.ply");
     
     
     connect(tb, SIGNAL(actionTriggered( QAction * )), this, SLOT(clicou(QAction*)));
     connect(fd, SIGNAL(fileSelected(const QString &)), centralpanel, SLOT(recebeArquivo(const QString &)));
     
-    
+
     open = tb->addAction(op,"");
     tb->addSeparator();
     zoomIn = tb->addAction(zi, "");
@@ -48,12 +49,13 @@ MainWindow::MainWindow()
     del = tb->addAction("Deletar");
     vdv = tb->addAction("Viz. do Viz.");
     botaoAdicionaPonto = tb->addAction("Criar Ponto");
+    botaoSalvar = tb->addAction("Salvar");
 
     addToolBar(Qt::LeftToolBarArea, tb);
 
     connect(centralpanel, SIGNAL(atualizaMain()), this, SLOT(update()));
 
-    setWindowTitle("trab2FT 0.0.1");
+    setWindowTitle("trab2FT 0.0.2");
     setFixedSize(800, 600);
 }
 
@@ -96,11 +98,14 @@ void MainWindow::clicou(QAction* a)
         fila->produz(VDV);
     }else if(a == botaoAdicionaPonto)
     {
-        fila->produz(TROCACLICK);
+        fila->produz(SWITCHCLICK);
+    }else if(a == botaoSalvar)
+    {
+        fila->produz(SALVAR);
     }
 }
 
 void MainWindow::update(void)
 {
-	repaint();
+    repaint();
 }

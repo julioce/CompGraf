@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <QPainter>
 #include <QDebug>
+#include <qfiledialog.h>
 #include <CommandQueue.h>
 #include <Interface.h>
 
@@ -16,11 +17,10 @@
 
 class Render : public QThread
 {
-	Q_OBJECT
+    Q_OBJECT
 
 signals:
-        void renderizado(const QImage &screen);
-
+    void renderizado(const QImage &screen);
         
 public slots:
     void updateScreen(int w, int y);
@@ -29,8 +29,9 @@ public slots:
                 
 public:
     Render(int w, int y, CommandQueue *c);
-    bool selecionaFace;
+    bool faceSelected;
     void run(void);
+    QImage* screen;
 
 private:
     void atualizaScreen(void);
@@ -50,7 +51,6 @@ private:
     void renderizaVertices(void);
     void renderizaFront(void);
     void click();
-    //void escolha(void);
     void reiniciaBuffers(int w, int h);
     void verticeSelecionado(void);
     void arestaSelecionada(void);
@@ -60,13 +60,13 @@ private:
     bool componenteFaceUnica(HalfEdge *h);
     void deleta();
     void vdv();
-    void trocaClick(void);
-    void criaPonto(void);
+    void switchClick(void);
+    void addFullVertex(void);
+    void salvar(void);
 
     Vertex* vsel;
     HalfEdge* hsel;
     Face* fsel;
-    QImage* screen;
     QImage* buffer;
     QImage* backBuffer;
     QImage* frontBuffer;
