@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'PlyParser.h'
 **
-** Created: Sat Oct 15 08:15:55 2011
+** Created: Sat Oct 15 14:09:51 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

@@ -15,8 +15,8 @@ MainWindow::MainWindow()
     QIcon a(":aresta");
     QIcon v(":vertice");
     QIcon f(":face");
-    QIcon bt(":botaoAdicionaPonto");
-    QIcon sv(":botaoSalvar");
+    QIcon add(":add");
+    QIcon sv(":save");
 
     fila = new CommandQueue();
     centralpanel = new RenderPanel(fila);
@@ -48,10 +48,10 @@ MainWindow::MainWindow()
     tb->addSeparator();
     del = tb->addAction("Deletar");
     vdv = tb->addAction("Viz. do Viz.");
-    botaoAdicionaPonto = tb->addAction("Criar Ponto");
-    botaoSalvar = tb->addAction("Salvar");
+    botaoAdicionaPonto = tb->addAction(add, "Criar Ponto");
+    botaoSalvar = tb->addAction(sv,"Salvar");
 
-    addToolBar(Qt::LeftToolBarArea, tb);
+    addToolBar(Qt::TopToolBarArea, tb);
 
     connect(centralpanel, SIGNAL(atualizaMain()), this, SLOT(update()));
 

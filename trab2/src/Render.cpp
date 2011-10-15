@@ -936,12 +936,14 @@ void Render::switchClick(void)
 
 void Render::addFullVertex(void)
 {
-    QPointF point;
     QPoint click;
+    QPointF point;
     QPointF start;
     QPointF end;
     QPointF first;
     HalfEdge *edge;
+    Face *face;
+    QVector<Face *> faces = interface.getFaces();
     QVector<QPointF> list;
 
     /* get click and transforms to point */
@@ -951,10 +953,9 @@ void Render::addFullVertex(void)
 
     /* get the nearest edge and his start and end */
     edge = interface.getArestaNear(point);
+    face = edge->getFace();
 
-    /* if the current face is different from face
-       form the ahlf-edge his twin is the right one
-    */
+    /* if the current face is different from face of the half-edge his twin is the right one */
     if(edge->getFace() != interface.getFaceNear(point)){
         edge = edge->getTwin();
     }
@@ -967,31 +968,42 @@ void Render::addFullVertex(void)
     /* while doesn't arrives into the start point, keep running to the next edge */
     while(end != first)
     {
-        /* get next edge */
+        /* get next edge and it's data */
         edge = edge->getProx();
-
-        /* get edge data */
         start = edge->getOrigem()->getPoint();
         end = edge->getDestino()->getPoint();
 
         /* adds to points to a list */
+        list << point;
         list << start;
         list << end;
-        list << point;
 
-        /* creates a new face based on the three points
-           2 from HalfEdge (start, end) + point(click)
-        */
-        interface.addVertex(point);
+        /* creates a new face based on the three points 2 from HalfEdge (start, end) + point(click) */
         interface.addFace(list);
 
+        /* adds the vertex ponit */
+        interface.addVertex(point);
 
         /* empty the list for a next round */
         list.clear();
 
-        /* redraw */
-        renderiza();
     }
+
+    for(int i = 0; i < faces.size(); i++)
+    {
+        Face *atual = faces[i];
+
+        if (atual == face)
+        {
+            faces.remove(i);
+            qDebug() << "Removi a face i=" << i;
+            break;
+        }
+    }
+
+    /* redraw */
+    renderiza();
+    renderizaFront();
 }
 
 void Render::salvar(void)

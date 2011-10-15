@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'Trab2FT.h'
 **
-** Created: Sat Oct 15 08:15:49 2011
+** Created: Sat Oct 15 14:09:44 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

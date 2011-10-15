@@ -5,7 +5,7 @@ RenderPanel::RenderPanel(CommandQueue *c)
     cmdq = c;
     fundolb = new QLabel(this);
 
-    screenW = 750;
+    screenW = 800;
     screenH = 550;
 
     Render *r = new Render(screenW, screenH, c);

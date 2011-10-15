@@ -10,5 +10,7 @@
         <file alias="vertice" >imgs/vertice.png</file>
         <file alias="aresta" >imgs/aresta.png</file>
         <file alias="face" >imgs/face.png</file>
+        <file alias="add" >imgs/add.png</file>
+        <file alias="save" >imgs/save.png</file>
     </qresource>
 </RCC>
