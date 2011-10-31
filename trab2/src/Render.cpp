@@ -951,7 +951,7 @@ void Render::addFullVertex(void)
     click.setY(sel->y());
     point = destransforma(click);
 
-    /* get the nearest edge and his start and end */
+    /* get the nearest edge and current face */
     edge = interface.getArestaNear(point);
     face = interface.getFaceNear(point);
 
@@ -978,11 +978,11 @@ void Render::addFullVertex(void)
         list << end;
         list << point;
 
-        /* creates a new face based on the three points 2 from HalfEdge (start, end) + point(click) */
-        interface.addFace(list);
-
         /* adds the vertex ponit */
         interface.addVertex(point);
+
+        /* creates a new face based on the three points 2 from HalfEdge (start, end) + point(click) */
+        interface.addFace(list);
 
         /* empty the list for a next round */
         list.clear();
@@ -995,10 +995,12 @@ void Render::addFullVertex(void)
         /* actual face */
         Face *atual = faces[i];
 
+        qDebug() << "i=" << i;
+
         /* if face listed, remove it */
         if (atual == face)
         {
-            faces.remove(i);
+            //faces.remove(i);
             qDebug() << "Removi a face i=" << i;
             break;
         }
