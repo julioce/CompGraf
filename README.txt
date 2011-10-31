@@ -13,3 +13,9 @@ Trabalho 2 - Gerador de Half-Edge
 Informações de uso e especificações no arquivo Descricao.txt no diretório trab2/
 	
 -------------------------------------------------------
+-------------------------------------------------------
+Trabalho 3 - Texturas e iluminação com o SahderLabs
+
+Informações de uso e especificações no arquivo Descricao.txt no diretório trab3/
+	
+-------------------------------------------------------
