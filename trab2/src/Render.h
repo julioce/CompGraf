@@ -62,11 +62,12 @@ private:
     void vdv();
     void switchClick(void);
     void addFullVertex(void);
-    void salvar(void);
+    void salvar(const QString &filename);
 
     Vertex* vsel;
     HalfEdge* hsel;
     Face* fsel;
+    Face* facePonto;
     QImage* buffer;
     QImage* backBuffer;
     QImage* frontBuffer;

@@ -3,13 +3,17 @@
 #include <QFileDialog>
 #include <PlyParser.h>
 #include <QRgb>
+#include <fstream>
+using namespace std;
+
+QVector <QVector<QPointF> > facesTotais;
 
 Render::Render(int w, int h, CommandQueue *c) {
+
 
     screenW = w;
     screenH = h;
     cmdq = c;
-
     sel = NULL;
     buffer = NULL;
     backBuffer = NULL;
@@ -18,6 +22,7 @@ Render::Render(int w, int h, CommandQueue *c) {
     vsel = NULL;
     hsel = NULL;
     fsel = NULL;
+    facePonto = NULL;
     
     zoom = 1.0;
     screen = new QImage(w, h, QImage::Format_ARGB32_Premultiplied);
@@ -107,14 +112,10 @@ void Render::run(void) {
             vdv();
             break;
         case SWITCHCLICK:
-            if(sel == NULL)
-                sel = new QPoint();
-            sel->setX(ex.x);
-            sel->setY(ex.y);
             switchClick();
             break;
         case SALVAR:
-            salvar();
+            salvar("tmp.ply");
             break;
         }
         atualizaScreen();
@@ -144,7 +145,6 @@ void Render::updateScreen(int w, int h)
 void Render::recebeArquivo(const QString &filename)
 {
     QVector<QPointF> tmp;
-
     if(sel != NULL)
     {
         delete sel;
@@ -168,18 +168,18 @@ void Render::recebeArquivo(const QString &filename)
     PlyParser ply(filename);
     
     tmp = ply.proximo();
-
     interface.clear();
 
     int i_faces = 0;
     while (i_faces < ply.getNFaces())
     {
         interface.addFace(tmp);
-
+        facesTotais << tmp;
         tmp = ply.proximo();
 
         i_faces++;
     }
+    interface.faceExterna = NULL;
     interface.addExtEdges();
 
     reiniciaBuffers(screenW * zoom, screenH * zoom);
@@ -374,11 +374,12 @@ void Render::click(void)
     }else if(rgb == corFace)
     {
         /* if i switched the click i should add a full vertex */
-        if(faceSelected){
-            f = interface.getFaceNear(p1);
+        if(!faceSelected){
+            facePonto = interface.getFaceNear(p1);
+            addFullVertex();
         }
         else{
-            addFullVertex();
+            f = interface.getFaceNear(p1);
         }
     }
 
@@ -860,6 +861,7 @@ void Render::deleta()
                 if (atual == nExter)
                 {
                     faces.remove(i);
+                    interface.faces.remove(i);
                     break;
                 }
             }
@@ -882,8 +884,6 @@ void Render::deleta()
             hsel = NULL;
             renderiza();
             renderizaFront();
-
-            qDebug() << "Executou o deleta()";
         }
     }
 }
@@ -928,90 +928,133 @@ void Render::vdv()
 
 void Render::switchClick(void)
 {
-    if(faceSelected)
-        faceSelected = false;
-    else
-        faceSelected = true;
+    faceSelected = !faceSelected;
+    if(!faceSelected){
+        salvar("tmp.ply");
+        recebeArquivo("tmp.ply");
+    }
 }
 
 void Render::addFullVertex(void)
 {
-    QPoint click;
+
     QPointF point;
+    QPoint click;
     QPointF start;
     QPointF end;
     QPointF first;
     HalfEdge *edge;
-    Face *face;
-    QVector<Face *> faces = interface.getFaces();
     QVector<QPointF> list;
+    QVector<QPointF> listAntiga;
 
     /* get click and transforms to point */
     click.setX(sel->x());
     click.setY(sel->y());
     point = destransforma(click);
 
-    /* get the nearest edge and current face */
+    /* get the nearest edge and his start and end */
     edge = interface.getArestaNear(point);
-    face = interface.getFaceNear(point);
 
-    /* if the current face is different from face of the half-edge his twin is the right one */
+    /* if the current face is different from face
+       form the half-edge his twin is the right one
+    */
     if(edge->getFace() != interface.getFaceNear(point)){
         edge = edge->getTwin();
     }
 
+    interface.removeFaceFromCollection(facePonto);
     /* gets the first start, the current start and the current end */
     end = edge->getDestino()->getPoint();
     first = edge->getOrigem()->getPoint();
     start = edge->getOrigem()->getPoint();
 
+    listAntiga << end;
+    listAntiga << start;
+
+    /* adds to points to a list */
+    list << start;
+    list << end;
+    list << point;
+
+    facesTotais << list;
+    list.clear();
+
     /* while doesn't arrives into the start point, keep running to the next edge */
     while(end != first)
     {
-        /* get next edge and it's data */
+        /* get next edge */
         edge = edge->getProx();
+
+        /* get edge data */
         start = edge->getOrigem()->getPoint();
         end = edge->getDestino()->getPoint();
+
+        if(!listAntiga.contains(end)){
+              listAntiga << end;
+        }
+        if(!listAntiga.contains(start)){
+              listAntiga << start;
+        }
 
         /* adds to points to a list */
         list << start;
         list << end;
         list << point;
-
-        /* adds the vertex ponit */
-        interface.addVertex(point);
-
-        /* creates a new face based on the three points 2 from HalfEdge (start, end) + point(click) */
-        interface.addFace(list);
+        facesTotais << list;
 
         /* empty the list for a next round */
         list.clear();
 
     }
 
-    /* iterates throughout all the faces and removes the current face, the larger face */
-    for(int i = 0; i < faces.size(); i++)
-    {
-        /* actual face */
-        Face *atual = faces[i];
+    for(int i=0; i<facesTotais.size(); i++){
+        QVector<QPointF> tmp = facesTotais[i];
+        for(int j=0; j<facesTotais[i].size(); j++){
+            if(listAntiga.contains(tmp[0])){
+                tmp.remove(0);
 
-        qDebug() << "i=" << i;
-
-        /* if face listed, remove it */
-        if (atual == face)
-        {
-            //faces.remove(i);
-            qDebug() << "Removi a face i=" << i;
+            }
+        }
+        if(tmp.size()==0){
+            facesTotais.remove(i);
             break;
         }
     }
+    interface.clear();
 
-    /* redraw */
+    for(int i=0; i<facesTotais.size(); i++){
+        interface.addFace(facesTotais[i]);
+    }
+
+    salvar("tmp.ply");
     renderiza();
-    renderizaFront();
 }
 
-void Render::salvar(void)
+void Render::salvar(const QString &filename)
 {
-    screen->save("./save.png", "PNG", 60);
+    ofstream arquivo;
+    arquivo.open(filename.toStdString().c_str());
+    arquivo << "ply\nformat ascii 1.0\ncomment triangulos apenas\nobj_info malha 2D";
+    arquivo << "\nelement vertex " << interface.vertices.size();
+    arquivo << "\nproperty float x\nproperty float y\nproperty float z";
+    arquivo << "\nelement face " << interface.faces.size();
+    arquivo << "\nproperty list uchar int vertex_indices\nend_header\n";
+
+    QMap<QPointF, int> mapaVertices;
+    for(int i=0; i<interface.vertices.size();i++){
+        mapaVertices.insert(interface.vertices.keys()[i],i);
+        arquivo << interface.vertices.keys()[i].x() << " ";
+        arquivo << interface.vertices.keys()[i].y() << "\n";
+    }
+
+    for(int i=0; i<facesTotais.size();i++){
+        arquivo<< facesTotais[i].size() << " ";
+        for(int j=0; j<facesTotais[i].size();j++){
+            arquivo << mapaVertices.value(facesTotais[i][j]) << " ";
+        }
+        arquivo << "\n";
+    }
+
+    arquivo.close();
+
 }

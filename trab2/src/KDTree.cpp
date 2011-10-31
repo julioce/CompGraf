@@ -12,11 +12,7 @@ return;
     qsrand(0);
 }
 
-KDTree::~KDTree()
-{
-    if(raiz != NULL)
-        limpa(raiz);
-}
+KDTree::~KDTree(){}
 
 NO* KDTree::divide(QList<HalfEdge *> *list, QRectF limite, bool primeiro)
 {
@@ -90,10 +86,8 @@ NO* KDTree::divide(QList<HalfEdge *> *list, QRectF limite, bool primeiro)
 double KDTree::pivoteia(QList<HalfEdge *> *list, QRectF limite, bool primeiro, QList<HalfEdge *> *men, QList<HalfEdge *> *mai)
 {
     int it;
-    int piv;
     double corte;
     QPoint p1, p2;
-    HalfEdge *p;
     HalfEdge *i;
 
     qDebug() << "U1";
@@ -195,7 +189,6 @@ QList<HalfEdge *>* KDTree::find(const QPointF &p)
 
 QList<HalfEdge *>* KDTree::busca(const QPointF &p, NO* no,bool primeiro)
 {
-    double v;
 
     if(primeiro)
     {

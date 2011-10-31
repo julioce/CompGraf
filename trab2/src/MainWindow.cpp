@@ -15,7 +15,7 @@ MainWindow::MainWindow()
     QIcon a(":aresta");
     QIcon v(":vertice");
     QIcon f(":face");
-    QIcon add(":add");
+    QIcon adV(":add");
     QIcon sv(":save");
 
     fila = new CommandQueue();
@@ -48,14 +48,14 @@ MainWindow::MainWindow()
     tb->addSeparator();
     del = tb->addAction("Deletar");
     vdv = tb->addAction("Viz. do Viz.");
-    botaoAdicionaPonto = tb->addAction(add, "Criar Ponto");
-    botaoSalvar = tb->addAction(sv,"Salvar");
+    botaoAdicionaPonto = tb->addAction(adV, "Criar Ponto");
+    botaoSalvar = tb->addAction(sv, "Salvar");
 
     addToolBar(Qt::TopToolBarArea, tb);
 
     connect(centralpanel, SIGNAL(atualizaMain()), this, SLOT(update()));
 
-    setWindowTitle("trab2FT 0.0.2");
+    setWindowTitle("trab2FT 0.0.3");
     setFixedSize(800, 600);
 }
 

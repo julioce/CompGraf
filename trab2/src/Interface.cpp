@@ -32,43 +32,44 @@ void Interface::addFace(QVector<QPointF> in)
 
     for(int i = 0; i < in.size(); i++)
     {
-        HalfEdge *e = new HalfEdge();
-        if (i == 0)     first = e;
+        //qDebug() << map.contains(qMakePair(in[(i+1)%in.size()], in[i]));
+        //if(!map.contains(qMakePair(in[(i+1)%in.size()], in[i]))){
 
-        map[qMakePair(in[i], in[(i+1)%in.size()])] = e;
-        twin = findTwin(in[(i+1)%in.size()],in[i]);
+            HalfEdge *e = new HalfEdge();
+            if (i == 0)     first = e;
 
-        minX = MIN(minX, in[i].x());
-        maxX = MAX(maxX, in[i].x());
-        minY = MIN(minY, in[i].y());
-        maxY = MAX(maxY, in[i].y());
+            map[qMakePair(in[i], in[(i+1)%in.size()])] = e;
+            twin = findTwin(in[(i+1)%in.size()],in[i]);
 
-        Vertex *v = addVertex(in[i]);
-        v->setEdge(e);
-        e->setOrigem(v);
+            minX = MIN(minX, in[i].x());
+            maxX = MAX(maxX, in[i].x());
+            minY = MIN(minY, in[i].y());
+            maxY = MAX(maxY, in[i].y());
 
-        e->setFace(f);
+            Vertex *v = addVertex(in[i]);
+            v->setEdge(e);
+            e->setOrigem(v);
 
-        e->setAnt(ant);
-        if (ant!= NULL)
-        {
-            ant->setProx(e);
-        }
+            e->setFace(f);
 
-        e->setTwin(twin);
-        if (twin!= NULL)
-        {
-            twin->setTwin(e);
-        }
+            e->setAnt(ant);
+            if (ant!= NULL)
+            {
+                ant->setProx(e);
+            }
 
-        ant = e;
+            e->setTwin(twin);
+            if (twin!= NULL)
+            {
+                twin->setTwin(e);
+            }
+            ant = e;
+       // }
     }
-
     first->setAnt(ant);
     ant->setProx(first);
 
     f->setOuterComp(first);
-
     faces.push_back(f);
 }
 
@@ -76,7 +77,6 @@ Vertex* Interface::addVertex(QPointF p)
 {
     QMap<QPointF, Vertex*>::iterator it;
     Vertex* v = NULL;
-
     it = vertices.find(p);
 
     if(it != vertices.end())
