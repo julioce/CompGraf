@@ -1,5 +1,3 @@
-uniform sampler2D sampler2d0;
-
 void main() {
 	//Inicializa a esfera
 	vec4 v = gl_Vertex;
@@ -11,11 +9,7 @@ void main() {
 	//Cor primaria da esfera
 	vec4 preto = vec4(0.0, 0.0, 0.0, 1.0);
 
-	//Inicializa a textura
-	gl_TexCoord[0] = gl_MultiTexCoord0;
-	gl_Position = ftransform();
-	vec4 textura = texture2D(sampler2d0, gl_TexCoord[0].st);
-
+	//DIRECAO DA LUZ
 	v = gl_ModelViewMatrix * v;
 	normal = gl_NormalMatrix * normal;
 	vec3 dir_luz = normalize(luz - v.xyz);
@@ -32,10 +26,11 @@ void main() {
 
 	//DIFUSA + ESPECULAR
 	vec3 cor_final = (difusa * preto.xyz) + vec3(kespecular);
-
+	
 	gl_FrontColor.xyz = cor_final;
 	gl_FrontColor.w = 1.0;
 	gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+
 
 	//DEBUG
 	//gl_FrontColor.xyz = v.xyz;
