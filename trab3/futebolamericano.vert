@@ -1,17 +1,17 @@
 void main() {
    vec4 v = gl_Vertex;
-
+	vec4 preto = vec4(0.0, 0.0, 0.0, 1.0);
 	vec3 normal = gl_Vertex.xyz;    
 	vec3 luz = gl_LightSource[0].position.xyz;
 
-	v = gl_ModelViewMatrix * v;
-	normal = gl_NormalMatrix * normal;
-
 	//Altera o formato da esfera
-	float x = 3*3 + 3
-	v.x *= x;
+	v.x = v.x/2.0;
+	v.y = v.y/2.0;
 
-	vec4 preto = vec4(0.0, 0.0, 0.0, 1.0);
+	normal.x = normal.x/2.3;
+	normal.y = normal.y/2.3;
+	normal = gl_NormalMatrix * normal;
+	
 	vec3 dir_luz = normalize(luz - v.xyz);
 
 	//DIFUSA
