@@ -1,7 +1,12 @@
+uniform sampler2D sampler2d0;
+
 void main() {
-   vec4 v = gl_ModelViewMatrix * gl_Vertex;
-	vec3 normal = gl_NormalMatrix * gl_Vertex.xyz;    
+   vec4 v = gl_Vertex;
+	vec3 normal = gl_Vertex.xyz;    
 	vec3 luz = gl_LightSource[0].position.xyz;
+
+	v = gl_ModelViewMatrix * v;
+	normal = gl_NormalMatrix * normal;
 
 	vec4 preto = vec4(0.0, 0.0, 0.0, 1.0);
 	vec3 dir_luz = normalize(luz - v.xyz);
@@ -30,4 +35,19 @@ void main() {
 
 	//FRAG
 	gl_TexCoord[0] = gl_MultiTexCoord0;
+
+	vec4 newVertexPos;
+	vec4 dv;
+	float df;
+	
+	gl_TexCoord[0].xy = gl_MultiTexCoord0.xy;
+	
+	dv = texture2D( sampler2d0, gl_MultiTexCoord0.xy );
+	
+	df = -0.30*dv.x - 0.059*dv.y - 0.11*dv.z;
+	
+	newVertexPos = vec4(gl_Normal * df * 0.05, 0.0) + gl_Vertex;
+	
+	gl_Position = gl_ModelViewProjectionMatrix * newVertexPos;
+
 }
