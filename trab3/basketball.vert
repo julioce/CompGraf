@@ -1,5 +1,7 @@
+varying float difusa;
+
 void main() {
-   vec4 v = gl_ModelViewMatrix * gl_Vertex;
+	vec4 v = gl_ModelViewMatrix * gl_Vertex;
 	vec3 normal = gl_NormalMatrix * gl_Vertex.xyz;    
 	vec3 luz = gl_LightSource[0].position.xyz;
 
@@ -7,8 +9,8 @@ void main() {
 	vec3 dir_luz = normalize(luz - v.xyz);
 
 	//DIFUSA
-	float difusa = dot(normal, dir_luz);
-	difusa = max(difusa, 0.0);	
+	difusa = dot(normal, dir_luz);
+	difusa = max(difusa, 0.0);
 
 	//ESPECULAR
 	vec3 reflexo = normalize(reflect(-dir_luz, normal));
