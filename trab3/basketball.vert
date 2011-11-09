@@ -17,7 +17,7 @@ void main() {
 	vec3 reflexo = normalize(reflect(-dir_luz, normal));
 	float especular = dot(reflexo, normalize((-v.xyz)));
 	especular = max(especular, 0.0);
-	float kespecular = pow(especular, 40);
+	kespecular = pow(especular, 40);
 
 	//DIFUSA + ESPECULAR
 	//vec3 cor_final = (difusa * preto.xyz) + vec3(kespecular);
