@@ -1,4 +1,5 @@
 varying float difusa;
+varying float kespecular;
 
 void main() {
 	vec4 v = gl_ModelViewMatrix * gl_Vertex;
@@ -16,10 +17,11 @@ void main() {
 	vec3 reflexo = normalize(reflect(-dir_luz, normal));
 	float especular = dot(reflexo, normalize((-v.xyz)));
 	especular = max(especular, 0.0);
-	float kespecular = pow(especular, 8);
+	float kespecular = pow(especular, 40);
 
 	//DIFUSA + ESPECULAR
-	vec3 cor_final = (difusa * preto.xyz) + vec3(kespecular);
+	//vec3 cor_final = (difusa * preto.xyz) + vec3(kespecular);
+	vec3 cor_final = preto.xyz;
 
 	//APLICA A COR FINAL
 	gl_FrontColor.xyz = cor_final;
@@ -33,3 +35,4 @@ void main() {
 	//FRAG
 	gl_TexCoord[0] = gl_MultiTexCoord0;
 }
+

@@ -1,4 +1,6 @@
 uniform sampler2D sampler2d0;
+varying float difusa;
+varying float kespecular;
 
 void main() {
    vec4 v = gl_Vertex;
@@ -12,17 +14,18 @@ void main() {
 	vec3 dir_luz = normalize(luz - v.xyz);
 
 	//DIFUSA
-	float difusa = dot(normal, dir_luz);
+	difusa = dot(normal, dir_luz);
 	difusa = max(difusa, 0.0);	
 
 	//ESPECULAR
 	vec3 reflexo = normalize(reflect(-dir_luz, normal));
 	float especular = dot(reflexo, normalize((-v.xyz)));
 	especular = max(especular, 0.0);
-	float kespecular = pow(especular, 8);
+	kespecular = pow(especular, 40);
 
 	//DIFUSA + ESPECULAR
-	vec3 cor_final = (difusa * preto.xyz) + vec3(kespecular);
+	//vec3 cor_final = (difusa * preto.xyz) + vec3(kespecular);
+	vec3 cor_final = preto.xyz;
 
 	//APLICA A COR FINAL
 	gl_FrontColor.xyz = cor_final;
@@ -36,18 +39,5 @@ void main() {
 	//FRAG
 	gl_TexCoord[0] = gl_MultiTexCoord0;
 
-	vec4 newVertexPos;
-	vec4 dv;
-	float df;
-	
-	gl_TexCoord[0].xy = gl_MultiTexCoord0.xy;
-	
-	dv = texture2D( sampler2d0, gl_MultiTexCoord0.xy );
-	
-	df = -0.30*dv.x - 0.059*dv.y - 0.11*dv.z;
-	
-	newVertexPos = vec4(gl_Normal * df * 0.05, 0.0) + gl_Vertex;
-	
-	gl_Position = gl_ModelViewProjectionMatrix * newVertexPos;
-
 }
+

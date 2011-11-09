@@ -1,3 +1,5 @@
+varying float difusa;
+
 void main() {
    vec4 v = gl_Vertex;
 	vec3 normal = gl_Vertex.xyz;    
@@ -8,16 +10,17 @@ void main() {
 	v.y = v.y/2.0;
 	normal = gl_NormalMatrix * normal;
 
-	vec4 branco = vec4(0.55, 0.55, 0.55, 1.0);
+	vec4 preto = vec4(0.0, 0.0, 0.0, 1.0);
 	vec3 dir_luz = normalize(luz - v.xyz);
 
 	//DIFUSA
-	float difusa = dot(normal, dir_luz);
+	difusa = dot(normal, dir_luz);
 	difusa = max(difusa, 0.0);
 
-	//DIFUSA + ESPECULAR
-	vec3 cor_final = (difusa * branco.xyz);
-
+	//DIFUSA
+	//vec3 cor_final = (difusa * preto.xyz);
+	vec3 cor_final = preto.xyz;
+	
 	//APLICA A COR FINAL
 	gl_FrontColor.xyz = cor_final;
 	gl_FrontColor.w = 1.0;
