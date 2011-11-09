@@ -8,7 +8,7 @@ void main()
 	vec4 textura = texture2D(sampler2d2, gl_TexCoord[0].st);
 	
 	if((textura.r < 0.30) && (textura.g < 0.30) && (textura.b < 0.30)) {
-		textura = texture2D(sampler2d0, gl_TexCoord[0].st) * texture2D(sampler2d1, 6.0 * gl_TexCoord[0].st);
+		textura = texture2D(sampler2d0, gl_TexCoord[0].st) * texture2D(sampler2d1, 3.0 * gl_TexCoord[0].st);
 	}
 
 	//Se for o friso preto tem especular

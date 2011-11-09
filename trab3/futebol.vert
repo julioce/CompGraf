@@ -1,6 +1,6 @@
-uniform sampler2D sampler2d0;
 varying float difusa;
 varying float kespecular;
+uniform sampler2D sampler2d0;
 
 void main() {
    vec4 v = gl_Vertex;
@@ -38,6 +38,23 @@ void main() {
 
 	//FRAG
 	gl_TexCoord[0] = gl_MultiTexCoord0;
+
+	//MAPPING
+	vec4 novoVertex;
+	vec4 dv;
+	float df;
+	df = 1.0;
+	
+	dv = texture2D(sampler2d0, gl_MultiTexCoord0.xy);
+	
+	//Se for cinza altera o vertex
+	if((dv.x < 0.1)) { 
+		df = 0.95;
+	}
+
+	novoVertex = 0.5 * vec4(gl_Vertex.xyz * df, 1.0) + gl_Vertex;
+	
+	gl_Position = gl_ModelViewProjectionMatrix * novoVertex;
 
 }
 
